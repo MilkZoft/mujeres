@@ -265,8 +265,9 @@ input:required:valid
 .footer-menu 
 {
 	float: left;
-	margin-left: 15px;
-	margin-right: 60px;	
+	margin-left: 10px;
+	margin-right: 56px;
+	width: 90px;	
 }
 
 
@@ -295,6 +296,7 @@ input:required:valid
 	margin: 0px;
 	margin-left: 15px;
 	padding: 0px;	
+	width: 90px;
 }
 
 .footer-wrapper ul li a 
@@ -367,7 +369,8 @@ input:required:valid
 	margin-top: 25px;
 }
 
-.noborder {
+.noborder 
+{
 	border: none;
 }
 
