@@ -79,6 +79,11 @@
 			
 			if($action === "edit" and $mural != "") { 
 				echo p(img(path($mural, TRUE), array("class" => "mural")));
+				echo formInput(array(	
+					"name" 	=> "delete_mural", 
+					"type"  => "checkbox",
+					"p" 	=> FALSE
+				)) . " " . __("Delete Mural")  . "<br /><br />";
 			} 
 
 			echo formInput(array(	
