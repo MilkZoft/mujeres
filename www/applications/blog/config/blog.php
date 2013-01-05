@@ -13,3 +13,5 @@ if(!defined("_maxLimit")) {
 }
 
 define("_lock", "www/lib/images/icons/blog/lock.png");
+define("_muralWidth", 940);
+define("_muralHeight", 320);

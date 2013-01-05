@@ -27,7 +27,7 @@ class Blog_Model extends ZP_Load {
 	public function cpanel($action, $limit = NULL, $order = "Language DESC", $search = NULL, $field = NULL, $trash = FALSE) {
 		if($action === "edit" or $action === "save") {
 			$validation = $this->editOrSave($action);
-		
+			
 			if($validation) {
 				return $validation;
 			}
@@ -72,16 +72,28 @@ class Blog_Model extends ZP_Load {
 		$this->helper(array("alerts", "time", "files"));
 
 		$this->Files = $this->core("Files");
-		
 		$this->mural = FILES("mural");
 		
 		if($this->mural["name"] !== "") {
 			$dir = "www/lib/files/images/mural/";
 
-			$this->mural = $this->Files->uploadImage($dir, "mural", "mural");
-		
-			if(is_array($this->mural)) {
-				return $this->mural["alert"];
+			$this->Files->filename  = $this->mural["name"];
+			$this->Files->fileType  = $this->mural["type"];
+			$this->Files->fileSize  = $this->mural["size"];
+			$this->Files->fileError = $this->mural["error"];
+			$this->Files->fileTmp   = $this->mural["tmp_name"];
+
+			if(!file_exists($dir)) {
+				@mkdir($dir, 0777); 				
+			}
+
+			$this->mural = $this->Files->upload($dir);
+
+			if(is_array($this->mural) and $this->mural["upload"]) {
+				$this->Images = $this->core("Images");
+				$this->Images->load($dir . $this->mural["filename"]);
+				# We want to obtain the x and y of the image.
+				____($this->Images->getWidth());
 			}
 		}
 		

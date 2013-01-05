@@ -20,7 +20,7 @@
 	$editor    = _get("defaultEditor") === "Redactor" ? 1 : 2;
 	
 	echo div("add-form", "class");
-		echo formOpen($href, "form-add", "form-add");
+		echo formOpen($href, "form-add", "form-add", NULL, "post", "multipart/form-data");
 			echo p(__(ucfirst(whichApplication())), "resalt");
 			
 			echo isset($alert) ? $alert : '<div id="alert-message" class="alert alert-success no-display"></div>';
@@ -65,6 +65,14 @@
 				"field"  => __("Content"), 
 				"p" 	 => TRUE, 
 				"value"  => stripslashes($content)
+			));
+
+			echo formInput(array(	
+				"name" 	=> "mural", 
+				"type"  => "file",
+				"class" => "add-img", 
+				"field" => __("Mural"), 	
+				"p" 	=> TRUE
 			));
 
 			echo formInput(array(	
