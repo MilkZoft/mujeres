@@ -13,7 +13,8 @@ class Blog_Model extends ZP_Load {
 		
 		$this->language = whichLanguage();
 		$this->table 	= "blog";
-		$this->fields   = "ID_Post, ID_User, Title, Slug, Content, Tags, Author, Start_Date, Year, Month, Day, Views, Image_Small, Image_Medium, Comments, Enable_Comments, Language, Pwd, Buffer, Code, Situation";
+		$this->fields   = "ID_Post, ID_User, Title, Slug, Content, Tags, Author, Start_Date, Year, Month, Day, Views, Image_Small, Image_Mural, Image_Medium, Comments, Enable_Comments, Language, Pwd, Buffer, Code, Situation";
+		$this->config("blog");
 
 		$this->Data = $this->core("Data");
 
@@ -67,12 +68,14 @@ class Blog_Model extends ZP_Load {
 		
 		$lang = getLang(POST("language"));
 		
-		$this->muralExist = POST("mural_exist");
-		
 		$this->helper(array("alerts", "time", "files"));
 
 		$this->Files = $this->core("Files");
 		$this->mural = FILES("mural");
+
+		if($action == "edit") {
+			$muralActual = $this->Db->find(POST("ID"), $this->table);
+		}
 		
 		if($this->mural["name"] !== "") {
 			$dir = "www/lib/files/images/mural/";
@@ -92,11 +95,25 @@ class Blog_Model extends ZP_Load {
 			if(is_array($this->mural) and $this->mural["upload"]) {
 				$this->Images = $this->core("Images");
 				$this->Images->load($dir . $this->mural["filename"]);
-				# We want to obtain the x and y of the image.
-				____($this->Images->getWidth());
+
+				if($this->Images->getWidth() == _muralWidth and $this->Images->getHeight() == _muralHeight) {
+					$muralURL = $dir . $this->mural["filename"];
+					if($action == "edit") {
+						$this->Files->deleteFile($muralActual[0]["Image_Mural"]);
+					}
+				} else {
+					$this->Files->deleteFile($dir . $this->mural["filename"]);
+					return getAlert("Mural's dimensions are incorrect. It must be 940x320 px");
+				}
+			} 
+		} 
+
+		if($action == "edit") {
+			if(!isset($muralURL)) {
+				$muralURL = $muralActual[0]["Image_Mural"];
 			}
 		}
-		
+
 		$dir = "www/lib/files/images/blog/";
 		
 		$this->image = $this->Files->uploadImage($dir, "image", "resize", TRUE, TRUE, FALSE);
@@ -110,6 +127,7 @@ class Blog_Model extends ZP_Load {
 			"Month"	       => date("m"),
 			"Day"	       => date("d"),
 			"Image_Small"  => isset($this->image["small"])  ? $this->image["small"]  : NULL,
+			"Image_Mural"  => isset($muralURL) ? $muralURL : NULL,
 			"Image_Medium" => isset($this->image["medium"]) ? $this->image["medium"] : NULL,
 			"Pwd"	       => (POST("pwd")) ? POST("pwd", "encrypt") : NULL,			
 			"Tags"		   => POST("tags"),
