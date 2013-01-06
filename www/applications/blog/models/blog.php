@@ -75,7 +75,7 @@ class Blog_Model extends ZP_Load {
 
 		if($action == "edit") {
 			$muralActual = $this->Db->find(POST("ID"), $this->table);
-		}
+		} 
 		
 		if($this->mural["name"] !== "" and !POST("delete_mural")) {
 			$dir = "www/lib/files/images/mural/";
@@ -110,7 +110,7 @@ class Blog_Model extends ZP_Load {
 			$this->Files->deleteFile($muralActual[0]["Image_Mural"]);
 			$muralURL = "";
 		} else {
-			if(!isset($muralURL)) {
+			if(!isset($muralURL) and $action == "edit") {
 				$muralURL = $muralActual[0]["Image_Mural"];
 			} 
 		}
@@ -273,8 +273,8 @@ class Blog_Model extends ZP_Load {
 		}
 	}
 
-	public function getMurals() {
-		return $this->Db->findBySQL("Image_Mural != '' AND Situation != 'Deleted'", $this->table, $this->fields, NULL, "ID_Post DESC");
+	public function getMurals($limit) {
+		return $this->Db->findBySQL("Image_Mural != '' AND Situation != 'Deleted'", $this->table, $this->fields, NULL, "ID_Post DESC", $limit);
 	}
 
 	public function getMuralByID($ID_Post) {				

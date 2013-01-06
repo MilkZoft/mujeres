@@ -192,19 +192,7 @@
 				</nav>
 			</header>
 
-			<div class="flexslider">
-		  		<ul class="slides">
-		  			<?php 
-		  				$this->execute("Blog_Controller", "mural");
-		  			?>
-		  			<!--<li>
-		    			<img src="<?php echo $this->themePath; ?>/images/slider/slider3.png" />
-		    			<div class="flex-caption">
-		    				<a href="#">Hola</a>
-		    			</div>
-		    		</li>
-		    		<li><a href="http://localhost/mujeres/index.php/es/blog/2013/01/01/como-hacer-un-aderezo-para-ensaladas"><img src="<?php echo $this->themePath; ?>/images/slider/slider1.png" /></a></li>
-		    		<li><img src="<?php echo $this->themePath; ?>/images/slider/slider2.png" /></li>
-					-->
-		  		</ul>
-			</div>
+  			<?php 
+  				$this->execute("Blog_Controller", "mural");
+  			?>
+		  		
