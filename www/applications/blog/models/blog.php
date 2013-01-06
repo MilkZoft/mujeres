@@ -13,7 +13,8 @@ class Blog_Model extends ZP_Load {
 		
 		$this->language = whichLanguage();
 		$this->table 	= "blog";
-		$this->fields   = "ID_Post, ID_User, Title, Slug, Content, Tags, Author, Start_Date, Year, Month, Day, Views, Image_Small, Image_Medium, Comments, Enable_Comments, Language, Pwd, Buffer, Code, Situation";
+		$this->fields   = "ID_Post, ID_User, Title, Slug, Content, Tags, Author, Start_Date, Year, Month, Day, Views, Image_Small, Image_Mural, Image_Medium, Comments, Enable_Comments, Language, Pwd, Buffer, Code, Situation";
+		$this->config("blog");
 
 		$this->Data = $this->core("Data");
 
@@ -27,7 +28,7 @@ class Blog_Model extends ZP_Load {
 	public function cpanel($action, $limit = NULL, $order = "Language DESC", $search = NULL, $field = NULL, $trash = FALSE) {
 		if($action === "edit" or $action === "save") {
 			$validation = $this->editOrSave($action);
-		
+			
 			if($validation) {
 				return $validation;
 			}
@@ -67,27 +68,52 @@ class Blog_Model extends ZP_Load {
 		
 		$lang = getLang(POST("language"));
 		
-		$this->muralExist = POST("mural_exist");
-		
 		$this->helper(array("alerts", "time", "files"));
 
 		$this->Files = $this->core("Files");
-		
 		$this->mural = FILES("mural");
+
+		if($action == "edit") {
+			$muralActual = $this->Db->find(POST("ID"), $this->table);
+		} 
 		
-		if($this->mural["name"] !== "") {
+		if($this->mural["name"] !== "" and !POST("delete_mural")) {
 			$dir = "www/lib/files/images/mural/";
 
-			$this->mural = $this->Files->uploadImage($dir, "mural", "mural");
-		
-			if(is_array($this->mural)) {
-				return $this->mural["alert"];
+			$this->Files->filename  = $this->mural["name"];
+			$this->Files->fileType  = $this->mural["type"];
+			$this->Files->fileSize  = $this->mural["size"];
+			$this->Files->fileError = $this->mural["error"];
+			$this->Files->fileTmp   = $this->mural["tmp_name"];
+
+			if(!file_exists($dir)) {
+				@mkdir($dir, 0777); 				
 			}
+
+			$this->mural = $this->Files->upload($dir);
+
+			if(is_array($this->mural) and $this->mural["upload"]) {
+				$this->Images = $this->core("Images");
+				$this->Images->load($dir . $this->mural["filename"]);
+
+				if($this->Images->getWidth() == _muralWidth and $this->Images->getHeight() == _muralHeight) {
+					$muralURL = $dir . $this->mural["filename"];
+					if($action == "edit") {
+						$this->Files->deleteFile($muralActual[0]["Image_Mural"]);
+					}
+				} else {
+					$this->Files->deleteFile($dir . $this->mural["filename"]);
+					return getAlert("Mural's dimensions are incorrect. It must be 940x320 px");
+				}
+			} 
+		} elseif(POST("delete_mural") === "on") {
+			$this->Files->deleteFile($muralActual[0]["Image_Mural"]);
+			$muralURL = "";
+		} else {
+			if(!isset($muralURL) and $action == "edit") {
+				$muralURL = $muralActual[0]["Image_Mural"];
+			} 
 		}
-		
-		$dir = "www/lib/files/images/blog/";
-		
-		$this->image = $this->Files->uploadImage($dir, "image", "resize", TRUE, TRUE, FALSE);
 
 		$data = array(
 			"ID_User"      => SESSION("ZanUserID"),
@@ -98,6 +124,7 @@ class Blog_Model extends ZP_Load {
 			"Month"	       => date("m"),
 			"Day"	       => date("d"),
 			"Image_Small"  => isset($this->image["small"])  ? $this->image["small"]  : NULL,
+			"Image_Mural"  => isset($muralURL) ? $muralURL : NULL,
 			"Image_Medium" => isset($this->image["medium"]) ? $this->image["medium"] : NULL,
 			"Pwd"	       => (POST("pwd")) ? POST("pwd", "encrypt") : NULL,			
 			"Tags"		   => POST("tags"),
@@ -112,7 +139,7 @@ class Blog_Model extends ZP_Load {
 			$data["Modified_Date"] = now(4);
 		}
 
-		$this->Data->ignore(array("temp_title", "temp_tags", "temp_content", "editor", "categories", "tags", "mural_exists", "mural", "pwd", "category", "language_category", "application", "mural_exist"));
+		$this->Data->ignore(array("delete_mural" , "temp_title", "temp_tags", "temp_content", "editor", "categories", "tags", "mural_exists", "mural", "pwd", "category", "language_category", "application", "mural_exist"));
 
 		$this->data = $this->Data->proccess($data, $validations);
 
@@ -193,8 +220,10 @@ class Blog_Model extends ZP_Load {
 		$this->Cache = $this->core("Cache");
 		
 		$this->Cache->removeAll("blog");
-		
+
 		$this->Db->update($this->table, $this->data, POST("ID"));
+
+		$prueba = $this->Db->find(POST("ID"), $this->table);
 		
 		return getAlert(__("The post has been edited correctly"), "success");
 	}
@@ -242,6 +271,14 @@ class Blog_Model extends ZP_Load {
 		} else {
 			return FALSE;
 		}
+	}
+
+	public function getMurals($limit) {
+		return $this->Db->findBySQL("Image_Mural != '' AND Situation != 'Deleted'", $this->table, $this->fields, NULL, "ID_Post DESC", $limit);
+	}
+
+	public function getMuralByID($ID_Post) {				
+		return $this->Db->findBy("ID_Post", $ID_Post, "mural", "Title, URL, Image");			
 	}
 
 	public function getAllByUser() {
@@ -314,15 +351,6 @@ class Blog_Model extends ZP_Load {
 		return $this->Db->findBySQL("Language = '$this->language' AND Situation = 'Active'", $this->table, $this->fields, NULL, "RAND()", $limit);
 	}
 	
-	public function getMural($limit) {		
-		return $this->Db->findAll("mural", "Title, URL, Image", NULL, "ID_Post DESC", $limit);				
-	}
-	
-	public function getMuralByID($ID_Post) {				
-		return $this->Db->findBy("ID_Post", $ID_Post, "mural", "Title, URL, Image");			
-	}
-	
-	
 	public function getPosts($limit) {	
 		return $this->Db->findBySQL("Language = '$this->language' AND Situation = 'Active'", $this->table, $this->fields, NULL, "ID_Post DESC", $limit);
 	}
@@ -370,16 +398,7 @@ class Blog_Model extends ZP_Load {
 		
 		return $data;
 	}
-	
-	public function deleteMural() {
-		$this->ID_Post = POST("ID_Post");
-		$this->mural   = POST("muralExist");
-	
-		unlink($this->mural);
-					
-		$this->Db->deleteBy("ID_Post", $this->ID_Post, "mural");
-	}
-	
+
 	public function removePassword($ID) {
 		$this->Db->update($this->table, array("Pwd" => ""), $ID);		
 	}

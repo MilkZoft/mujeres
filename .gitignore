@@ -10,3 +10,4 @@ www/config/database.php
 www/lib/languages/*.txt
 www/lib/cache/css/*.css
 www/lib/cache/js/*.js
+www/lib/files/images/mural/
