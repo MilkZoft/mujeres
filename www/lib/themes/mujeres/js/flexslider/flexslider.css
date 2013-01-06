@@ -74,3 +74,20 @@ html[xmlns] .slides {display: block;}
   .flex-direction-nav .flex-prev {opacity: 1; left: 0;}
   .flex-direction-nav .flex-next {opacity: 1; right: 0;}
 }
+
+.flex-caption {
+  margin:0px;
+  background:#000;
+  opacity:0.65;
+  filter:alpha(opacity=65); /* For IE8 and earlier */
+  padding:10px;
+  position: absolute;
+  margin-top:-60px;
+  width:97.9%;
+  font-size: 1.6em;
+}
+
+.flex-caption a {
+	color: #FFF;
+	text-decoration: none;
+}

@@ -13,6 +13,7 @@
 	$userID    = isset($data) ? recoverPOST("ID_User", $data[0]["ID_User"])      : SESSION("ZanUserID");
 	$buffer    = isset($data) ? recoverPOST("buffer", $data[0]["Buffer"])		 : 1;
 	$code      = isset($data) ? recoverPOST("code", $data[0]["Code"])		 	 : recoverPOST("code");
+	$mural     = isset($data) ? $data[0]["Image_Mural"]                          : NULL;
 	$edit      = isset($data) ? TRUE											 : FALSE;
 	$action	   = isset($data) ? "edit"											 : "save";
 	$href 	   = isset($data) ? path(whichApplication() ."/cpanel/$action/$ID/") : path(whichApplication() ."/cpanel/add");
@@ -20,7 +21,7 @@
 	$editor    = _get("defaultEditor") === "Redactor" ? 1 : 2;
 	
 	echo div("add-form", "class");
-		echo formOpen($href, "form-add", "form-add");
+		echo formOpen($href, "form-add", "form-add", NULL, "post", "multipart/form-data");
 			echo p(__(ucfirst(whichApplication())), "resalt");
 			
 			echo isset($alert) ? $alert : '<div id="alert-message" class="alert alert-success no-display"></div>';
@@ -66,6 +67,24 @@
 				"p" 	 => TRUE, 
 				"value"  => stripslashes($content)
 			));
+
+			echo formInput(array(	
+				"name" 	=> "mural", 
+				"type"  => "file",
+				"class" => "add-img", 
+				"field" => __("Mural"), 	
+				"p" 	=> TRUE
+			));
+
+			
+			if($action === "edit" and $mural != "") { 
+				echo p(img(path($mural, TRUE), array("class" => "mural")));
+				echo formInput(array(	
+					"name" 	=> "delete_mural", 
+					"type"  => "checkbox",
+					"p" 	=> FALSE
+				)) . " " . __("Delete Mural")  . "<br /><br />";
+			} 
 
 			echo formInput(array(	
 				"id"    => "author",
