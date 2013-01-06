@@ -273,8 +273,12 @@ class Blog_Model extends ZP_Load {
 		}
 	}
 
-	public function getMural() {
+	public function getMurals() {
 		return $this->Db->findBySQL("Image_Mural != '' AND Situation != 'Deleted'", $this->table, $this->fields, NULL, "ID_Post DESC");
+	}
+
+	public function getMuralByID($ID_Post) {				
+		return $this->Db->findBy("ID_Post", $ID_Post, "mural", "Title, URL, Image");			
 	}
 
 	public function getAllByUser() {

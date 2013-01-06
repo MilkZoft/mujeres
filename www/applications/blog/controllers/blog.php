@@ -156,7 +156,7 @@ class Blog_Controller extends ZP_Load {
 	}
 	
 	public function mural($limit = 10) {
-		$data = $this->Cache->data("mural-$limit-". $this->language, "blog", $this->Blog_Model, "getMural", array($limit));
+		$data = $this->Cache->data("mural-$limit-". $this->language, "blog", $this->Blog_Model, "getMurals", array($limit));
 
 		if($data) {
 			$vars["mural"] = $data;				
