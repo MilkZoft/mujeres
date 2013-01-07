@@ -70,66 +70,45 @@ class Blog_Model extends ZP_Load {
 		
 		$this->helper(array("alerts", "time", "files"));
 
+		$dir = "www/lib/files/images";
+
 		$this->Files = $this->core("Files");
 		$this->mural = FILES("mural");
 
-		if($action == "edit") {
+		$this->postImage = $this->Files->uploadImage($dir ."/blog/", "image");
+		
+____($this->postImage);
+		if($action === "edit") {
 			$muralActual = $this->Db->find(POST("ID"), $this->table);
 		} 
+        
+        $this->postMural = $this->Files->uploadImage($dir ."/mural/", "mural", "mural");
 		
-		if($this->mural["name"] !== "" and !POST("delete_mural")) {
-			$dir = "www/lib/files/images/mural/";
-
-			$this->Files->filename  = $this->mural["name"];
-			$this->Files->fileType  = $this->mural["type"];
-			$this->Files->fileSize  = $this->mural["size"];
-			$this->Files->fileError = $this->mural["error"];
-			$this->Files->fileTmp   = $this->mural["tmp_name"];
-
-			if(!file_exists($dir)) {
-				@mkdir($dir, 0777); 				
-			}
-
-			$this->mural = $this->Files->upload($dir);
-
-			if(is_array($this->mural) and $this->mural["upload"]) {
-				$this->Images = $this->core("Images");
-				$this->Images->load($dir . $this->mural["filename"]);
-
-				if($this->Images->getWidth() == _muralWidth and $this->Images->getHeight() == _muralHeight) {
-					$muralURL = $dir . $this->mural["filename"];
-					if($action == "edit") {
-						$this->Files->deleteFile($muralActual[0]["Image_Mural"]);
-					}
-				} else {
-					$this->Files->deleteFile($dir . $this->mural["filename"]);
-					return getAlert("Mural's dimensions are incorrect. It must be 940x320 px");
-				}
-			} 
-		} elseif(POST("delete_mural") === "on") {
+		if(POST("delete_mural") === "on") {
 			$this->Files->deleteFile($muralActual[0]["Image_Mural"]);
-			$muralURL = "";
+			$this->postMural = FALSE;
 		} else {
-			if(!isset($muralURL) and $action == "edit") {
-				$muralURL = $muralActual[0]["Image_Mural"];
+			if(!isset($this->postMural) and $action == "edit") {
+				$this->postMural = $muralActual[0]["Image_Mural"];
 			} 
 		}
 
 		$data = array(
-			"ID_User"      => SESSION("ZanUserID"),
-			"Slug"         => slug(POST("title", "clean")),
-			"Content"      => setCode(decode(POST("content", "clean")), FALSE),
-			"Author"       => POST("author") ? POST("author") : SESSION("ZanUser"),
-			"Year"	       => date("Y"),
-			"Month"	       => date("m"),
-			"Day"	       => date("d"),
-			"Image_Small"  => isset($this->image["small"])  ? $this->image["small"]  : NULL,
-			"Image_Mural"  => isset($muralURL) ? $muralURL : NULL,
-			"Image_Medium" => isset($this->image["medium"]) ? $this->image["medium"] : NULL,
-			"Pwd"	       => (POST("pwd")) ? POST("pwd", "encrypt") : NULL,			
-			"Tags"		   => POST("tags"),
-			"Buffer"	   => POST("buffer") === FALSE ? 0 : POST("buffer"),
-			"Code"	       => POST("code") === FALSE ? code(10) : POST("code"),
+			"ID_User"        => SESSION("ZanUserID"),
+			"Slug"           => slug(POST("title", "clean")),
+			"Content"        => setCode(decode(POST("content", "clean")), FALSE),
+			"Author"         => POST("author") ? POST("author") : SESSION("ZanUser"),
+			"Year"	         => date("Y"),
+			"Month"	         => date("m"),
+			"Day"	         => date("d"),
+			"Image_Original" => isset($this->postImage["original"]) ? $postImageURL : NULL,
+			"Image_Small"  	 => isset($this->image["small"])  ? $this->image["small"]  : NULL,
+			"Image_Mural"    => isset($this->postMural) ? $this->postMural : NULL,
+			"Image_Medium"   => isset($this->image["medium"]) ? $this->image["medium"] : NULL,
+			"Pwd"	         => (POST("pwd")) ? POST("pwd", "encrypt") : NULL,			
+			"Tags"		     => POST("tags"),
+			"Buffer"	     => !POST("buffer") ? 0 : POST("buffer"),
+			"Code"	         => !POST("code") ? code(10) : POST("code"),
 		);
 
 		if($action === "save") {

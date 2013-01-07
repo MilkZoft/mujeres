@@ -58,6 +58,14 @@
 				$options
 			);
 
+			echo formInput(array(	
+				"name" 	=> "mural", 
+				"type"  => "file",
+				"class" => "add-img", 
+				"field" => __("Mural"), 	
+				"p" 	=> TRUE
+			));
+
 			echo formTextarea(array(	 
 				"id"     => "redactor",
 				"name" 	 => "content", 
@@ -69,10 +77,10 @@
 			));
 
 			echo formInput(array(	
-				"name" 	=> "mural", 
+				"name" 	=> "image", 
 				"type"  => "file",
 				"class" => "add-img", 
-				"field" => __("Mural"), 	
+				"field" => __("Post Image"), 	
 				"p" 	=> TRUE
 			));
 
