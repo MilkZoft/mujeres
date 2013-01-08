@@ -14,6 +14,7 @@
 	$buffer    = isset($data) ? recoverPOST("buffer", $data[0]["Buffer"])		 : 1;
 	$code      = isset($data) ? recoverPOST("code", $data[0]["Code"])		 	 : recoverPOST("code");
 	$mural     = isset($data) ? $data[0]["Image_Mural"]                          : NULL;
+	$image 	   = isset($data) ? $data[0]["Image_Medium"]						 : NULL;
 	$edit      = isset($data) ? TRUE											 : FALSE;
 	$action	   = isset($data) ? "edit"											 : "save";
 	$href 	   = isset($data) ? path(whichApplication() ."/cpanel/$action/$ID/") : path(whichApplication() ."/cpanel/add");
@@ -66,6 +67,15 @@
 				"p" 	=> TRUE
 			));
 
+			if($action === "edit" and $mural != "") { 
+				echo p(img(path($mural, TRUE), array("class" => "mural")));
+				echo formInput(array(	
+					"name" 	=> "delete_mural", 
+					"type"  => "checkbox",
+					"p" 	=> FALSE
+				)) . " " . __("Delete Mural")  . "<br /><br />";
+			} 
+
 			echo formTextarea(array(	 
 				"id"     => "redactor",
 				"name" 	 => "content", 
@@ -84,14 +94,13 @@
 				"p" 	=> TRUE
 			));
 
-			
-			if($action === "edit" and $mural != "") { 
-				echo p(img(path($mural, TRUE), array("class" => "mural")));
+			if($action === "edit" and $image != "") { 
+				echo p(img(path($image, TRUE)));
 				echo formInput(array(	
-					"name" 	=> "delete_mural", 
+					"name" 	=> "delete_image", 
 					"type"  => "checkbox",
 					"p" 	=> FALSE
-				)) . " " . __("Delete Mural")  . "<br /><br />";
+				)) . " " . __("Delete Image")  . "<br /><br />";
 			} 
 
 			echo formInput(array(	
