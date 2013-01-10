@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-01-2013 a las 18:15:19
+-- Tiempo de generación: 10-01-2013 a las 16:15:08
 -- Versión del servidor: 5.5.29-log
 -- Versión de PHP: 5.4.10
 
@@ -114,9 +114,11 @@ CREATE TABLE IF NOT EXISTS `muu_blog` (
   `Month` varchar(2) NOT NULL,
   `Day` varchar(2) NOT NULL,
   `Views` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `Image_Original` varchar(250) DEFAULT NULL,
   `Image_Small` varchar(250) DEFAULT NULL,
   `Image_Mural` varchar(250) DEFAULT NULL,
   `Image_Medium` varchar(250) NOT NULL,
+  `Image_Thumbnail` varchar(250) DEFAULT NULL,
   `Comments` mediumint(8) NOT NULL DEFAULT '0',
   `Enable_Comments` tinyint(1) NOT NULL DEFAULT '0',
   `Language` varchar(20) NOT NULL DEFAULT 'Spanish',
@@ -126,18 +128,18 @@ CREATE TABLE IF NOT EXISTS `muu_blog` (
   `Situation` varchar(15) NOT NULL DEFAULT 'Active',
   PRIMARY KEY (`ID_Post`),
   KEY `ID_User` (`ID_User`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Volcado de datos para la tabla `muu_blog`
 --
 
-INSERT INTO `muu_blog` (`ID_Post`, `ID_User`, `Title`, `Slug`, `Content`, `Tags`, `Author`, `Start_Date`, `Modified_Date`, `Text_Date`, `Year`, `Month`, `Day`, `Views`, `Image_Small`, `Image_Mural`, `Image_Medium`, `Comments`, `Enable_Comments`, `Language`, `Pwd`, `Buffer`, `Code`, `Situation`) VALUES
-(1, 1, 'entrada de prueba', 'entrada-de-prueba', 'sdfsdfsf sdf sd f sdf ', '', 'admin', 1357414289, NULL, 'S', '2013', '01', '05', 0, '', '', '', 0, 1, 'Spanish', '', 1, 'B13CAB79C3', 'Draft'),
-(2, 1, ' entrada de prueba dos asdasdsadasd2', 'entrada-de-prueba-dos-asdasdsadasd2', 'jgjgjg jg jg j gjg dfhbfdbvcb', 'mvhnvnvnvbnvbnbvnv', 'admin', 1357414325, 1357426187, 'S', '2013', '01', '05', 0, '', '', '', 0, 1, 'Spanish', '', 1, '967AE1D7E4', 'Draft'),
-(3, 1, '516251651651651', '516251651651651', 'kdefkhkdhfdkhf', '', 'admin', 1357414389, NULL, 'S', '2013', '01', '05', 0, '', '', '', 0, 1, 'Spanish', '', 1, 'C7183B38C5', 'Draft'),
-(4, 1, 'dasdasdasd', 'dasdasdasd', 'adsadasdasd', 'asdasd', 'admin', 1357415708, NULL, 'S', '2013', '01', '05', 0, '', '', '', 0, 1, 'Spanish', '', 1, 'C713869B11', 'Draft'),
-(5, 1, 'adasdsadasd', 'adasdsadasd', 'dasdasdsadasd', 'asdasdasdasdasdasd', 'admin', 1357426286, NULL, 'S', '2013', '01', '05', 0, '', 'www/lib/files/images/mural/6c33c_reyes-e1356979959197-thumb940x320.png', '', 0, 1, 'Spanish', '', 1, '2C24D6019C', 'Active');
+INSERT INTO `muu_blog` (`ID_Post`, `ID_User`, `Title`, `Slug`, `Content`, `Tags`, `Author`, `Start_Date`, `Modified_Date`, `Text_Date`, `Year`, `Month`, `Day`, `Views`, `Image_Original`, `Image_Small`, `Image_Mural`, `Image_Medium`, `Image_Thumbnail`, `Comments`, `Enable_Comments`, `Language`, `Pwd`, `Buffer`, `Code`, `Situation`) VALUES
+(1, 1, 'dqwdqwd', 'dqwdqwd', 'qwdqwdqwd', 'qwdwqdd', 'admin', 1357613751, NULL, 'Lunes, 07 de Enero de 2013', '2013', '01', '07', 0, '', '', '', '', NULL, 0, 1, 'Spanish', '', 1, '9B4EF2321C', 'Draft'),
+(2, 1, 'dawsdsadsadasd123', 'dawsdsadsadasd123', 'eqweqweqweqwe', 'adasdqawd', 'admin', 1357613776, 1357618064, 'Lunes, 07 de Enero de 2013', '2013', '01', '07', 0, '', '', 'www/lib/files/images/mural/e9214_milk-thumb940x320.jpg', '', '', 0, 1, 'Spanish', '', 1, 'D13077423F', 'Active'),
+(4, 1, '1234515123123', '1234515123123', 'adsasdadad', '', 'admin', 1357618282, 1357620463, 'Lunes, 07 de Enero de 2013', '2013', '01', '07', 0, '', '', '', '', '', 0, 1, 'Spanish', '', 1, '19BA99C666', 'Draft'),
+(5, 1, 'Prueba', 'prueba', 'dasdasdsadas', 'alalalala', 'admin', 1357620493, 1357623251, 'Lunes, 07 de Enero de 2013', '2013', '01', '07', 0, '', '', 'www/lib/files/images/mural/a1b3c_milk-thumb940x320.jpg', '', '', 0, 1, 'Spanish', '', 1, '9364F2F88D', 'Draft'),
+(6, 1, 'Hola Mundo', 'hola-mundo', 'Contenido de prueba', '', 'admin', 1357701881, NULL, 'Martes, 08 de Enero de 2013', '2013', '01', '08', 0, '', '', 'www/lib/files/images/mural/c9ddc_milk-thumb940x320.jpg', '', '', 0, 1, 'Spanish', '', 1, 'DD245155BA', 'Draft');
 
 -- --------------------------------------------------------
 
@@ -1378,7 +1380,7 @@ CREATE TABLE IF NOT EXISTS `muu_users` (
 --
 
 INSERT INTO `muu_users` (`ID_User`, `ID_Privilege`, `Username`, `Pwd`, `Email`, `Website`, `Avatar`, `Credits`, `Recommendation`, `Sign`, `Messages`, `Recieve_Messages`, `Topics`, `Replies`, `Comments`, `Posts`, `Bookmarks`, `Codes`, `Tutorials`, `Jobs`, `Subscribed`, `Start_Date`, `Code`, `CURP`, `RFC`, `Name`, `Age`, `Title`, `Address`, `Zip`, `Phone`, `Mobile`, `Gender`, `Relationship`, `Birthday`, `Country`, `District`, `City`, `Technologies`, `Twitter`, `Facebook`, `Linkedin`, `Google`, `Viadeo`, `Situation`) VALUES
-(1, 1, 'admin', 'b9223847e1566884893656e84798ff39cea2b8c4', 'carlos@milkzoft.com', '', 'default.png', 65, 25, '', 0, 1, 0, 0, 0, 5, 0, 0, 0, 0, 1, 1337647712, 'BC958D3C97', '', '', 'Carlos Santana Roldán', 18, '', '', '', '', '0', 'M', 'Single', '', '', '', '', '', '', '', '', '', '', 'Active'),
+(1, 1, 'admin', 'b9223847e1566884893656e84798ff39cea2b8c4', 'carlos@milkzoft.com', '', 'default.png', 86, 60, '', 0, 1, 0, 0, 0, 12, 0, 0, 0, 0, 1, 1337647712, 'BC958D3C97', '', '', 'Carlos Santana Roldán', 18, '', '', '', '', '0', 'M', 'Single', '', '', '', '', '', '', '', '', '', '', 'Active'),
 (2, 4, 'tester', 'e53e0171e0fa33c534981aab0be760bfed2959f1', 'tester@milkzoft.com', '', 'default.png', 0, 50, '', 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1347453332, 'C3F4E6E123', '', '', '', 18, '', '', '', '', '', 'M', 'Single', '', '', '', '', '', '', '', '', '', '', 'Active');
 
 -- --------------------------------------------------------
@@ -1394,13 +1396,6 @@ CREATE TABLE IF NOT EXISTS `muu_users_online` (
   KEY `Date_Start` (`Start_Date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `muu_users_online`
---
-
-INSERT INTO `muu_users_online` (`User`, `Start_Date`) VALUES
-('admin', 1357454176);
-
 -- --------------------------------------------------------
 
 --
@@ -1413,6 +1408,13 @@ CREATE TABLE IF NOT EXISTS `muu_users_online_anonymous` (
   PRIMARY KEY (`IP`),
   KEY `Date_Start` (`Start_Date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `muu_users_online_anonymous`
+--
+
+INSERT INTO `muu_users_online_anonymous` (`IP`, `Start_Date`) VALUES
+('::1', 1357757126);
 
 -- --------------------------------------------------------
 
