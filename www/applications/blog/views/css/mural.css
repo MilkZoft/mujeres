@@ -1,5 +1,5 @@
 .mural-image {
-	width: 960px;
+	width: 900px;
 	text-align: center;
 	z-index: 0;
 }
@@ -7,15 +7,15 @@
 .mural-info {
 	z-index: 1;
 	position:absolute;
-	height: 50px;
-	width: 960px;
-	margin-top: -56px;
+	height: 40px;
+	width: 940px;
+	margin-top: -79px;
 }
 
 
 .mural-title {
 	display: block;
-	opacity:0.8;
+	opacity:0.6;
 	line-height: 50px;
 	background-color: #000;
 	color: #FFF;

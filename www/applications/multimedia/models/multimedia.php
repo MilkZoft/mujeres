@@ -72,14 +72,14 @@ class Multimedia_Model extends ZP_Load {
 		} else {
 			return getAlert(__("Error while tried to upload the files"));
 		}
+
 	}
 	
 	private function save() {			
 		if($this->Db->insertBatch($this->table, $this->data)) {
 			return getAlert(__("The files has been saved correctly"), "success");
 		}
-
-
+		
 		return getAlert(__("Error while tried to upload the files"), "success");
 	}
 	

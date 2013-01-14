@@ -8,31 +8,45 @@ if(!defined("_access")) {
 
 $routes = array(
 	0 => array(
-		"pattern"	  => "/^tv/",
-		"application" => "pages",
-		"controller"  => "pages",
-		"method"	  => "tv",
-		"params"	  => array()
+		"pattern"	  => "/^cocina/",
+		"application" => "blog",
+		"controller"  => "blog",
+		"method"	  => "tag",
+		"params"	  => array("cocina")
 	),
 	1 => array(
-		"pattern"	  => "/^publicidad/",
-		"application" => "pages",
-		"controller"  => "pages",
-		"method"	  => "getBySlug",
-		"params"	  => array("publicidad")
+		"pattern"	  => "/^belleza/",
+		"application" => "blog",
+		"controller"  => "blog",
+		"method"	  => "tag",
+		"params"	  => array("belleza")
 	),
 	2 => array(
-		"pattern"	  => "/^links/",
-		"application" => "pages",
-		"controller"  => "pages",
-		"method"	  => "getBySlug",
-		"params"	  => array("links")
+		"pattern"	  => "/^hogar/",
+		"application" => "blog",
+		"controller"  => "blog",
+		"method"	  => "tag",
+		"params"	  => array("hogar")
 	),
 	3 => array(
-		"pattern"	  => "/^live/",
-		"application" => "pages",
-		"controller"  => "pages",
-		"method"	  => "getBySlug",
-		"params"	  => array("live")
+		"pattern"	  => "/^familia/",
+		"application" => "blog",
+		"controller"  => "blog",
+		"method"	  => "tag",
+		"params"	  => array("familia")
+	),
+	4 => array(
+		"pattern"	  => "/^salud/",
+		"application" => "blog",
+		"controller"  => "blog",
+		"method"	  => "tag",
+		"params"	  => array("salud")
+	),
+	5 => array(
+		"pattern"	  => "/^sexualidad/",
+		"application" => "blog",
+		"controller"  => "blog",
+		"method"	  => "tag",
+		"params"	  => array("sexualidad")
 	),
 );

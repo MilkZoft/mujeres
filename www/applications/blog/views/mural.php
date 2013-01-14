@@ -12,28 +12,25 @@
 	});
 </script>
 
-<div id="slides">
-	<div class="slides_container">
+<div class="flexslider">
+	<ul class="slides">
 	<?php
 		if(is_array($mural)) {				
 			foreach($mural as $post) {
+				$URL = path("blog/". $post["Year"] ."/". $post["Month"] ."/". $post["Day"] ."/". $post["Slug"]);
 	?>
-				<div class="mural-image">
-					<img src="<?php echo _webURL . _sh . $post["Image"]; ?>" class="no-border">
 				
-					<div class="mural-info">
-						<a href="<?php echo $post["URL"]; ?>" title="<?php echo $post["Title"]; ?>">
-							<span class="mural-title"><?php echo $post["Title"]; ?></span>
-						</a>
-					</div>					
-				</div>
+			    		<li>
+			    			<img src="<?php echo path($post["Image_Mural"], TRUE); ?>" class="no-border" />
+			    			<div class="mural-info">
+								<a href="<?php echo $URL; ?>" title="<?php echo $post["Title"]; ?>">
+									<span class="mural-title"><?php echo $post["Title"]; ?></span>
+								</a>
+							</div>	
+			    		</li>
 	<?php      			
 			}
 		}
 	?>		
-	</div>
-	
-	<a href="#" class="prev"><img src="<?php echo _webURL; ?>/www/lib/images/slides/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
-	<a href="#" class="next"><img src="<?php echo _webURL; ?>/www/lib/images/slides/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
+	</ul>
 </div>
-&nbsp;

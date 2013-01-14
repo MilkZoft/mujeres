@@ -2,6 +2,22 @@
 	if(!defined("_access")) {
 		die("Error: You don't have permission to access here...");
 	}
+
+	if(segment(0) === "casa") {
+		$logo = "casa";
+	} elseif(segment(0) === "belleza") {
+		$logo = "belleza";
+	} elseif(segment(0) === "hogar") {
+		$logo = "hogar";
+	} elseif(segment(0) === "familia") {
+		$logo = "familia";
+	} elseif(segment(0) === "salud") {
+		$logo = "salud";
+	} elseif(segment(0) === "sexualidad") {
+		$logo = "sexualidad";
+	} else {
+		$logo = "logo";
+	}
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo _get("webLang"); ?>">
@@ -20,7 +36,7 @@
 	<?php 
 		echo $this->getCSS(); 
 	 	
-	 	echo $this->js("jquery", NULL, TRUE);   
+	 	#echo $this->js("jquery", NULL, TRUE);   
 	?>
 
 	<script type="text/javascript" src="<?php echo $this->themePath; ?>/js/porlets.js"></script>
@@ -37,7 +53,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script src="<?php echo $this->themePath; ?>/js/flexslider/jquery.flexslider.min.js"></script>
 
-	<script type="text/javascript" charset="utf-8">
+	<script type="text/javascript">
 		$(function() {
 	    	$('.flexslider').flexslider();
 	  	});
@@ -160,7 +176,7 @@
 
 	<div class="container">
 		<header>
-			<a href="<?php echo path(); ?>" title="<?php echo __("Women in the Kitchen"); ?>"><img class="logo noborder" src="<?php echo $this->themePath; ?>/images/logo.png" alt="Mujeres en la Cocina" /></a>
+			<a href="<?php echo path(); ?>" title="<?php echo __("Women in the Kitchen"); ?>"><img class="logo noborder" src="<?php echo $this->themePath; ?>/images/<?php echo $logo; ?>.png" alt="Mujeres en la Cocina" /></a>
 			
 				<nav class="menu">
 					<ul>
