@@ -12,7 +12,6 @@
 	margin-top: -79px;
 }
 
-
 .mural-title {
 	display: block;
 	opacity:0.6;
@@ -25,7 +24,11 @@
 	text-decoration: none;
 }
 
+.mural-title a {
+	text-decoration: none;
+}
+
 .mural-title:hover {
 	opacity: 1;
-	color: #00a8ff;
+	color: #a6e4ea;
 }
