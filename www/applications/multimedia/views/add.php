@@ -4,9 +4,9 @@
 	}
 
 	$ID        = isset($data) ? recoverPOST("ID", $data[0]["ID_Post"]) 			 : 0;
-	$title     = isset($data) ? recoverPOST("title", $data[0]["Title"])   		 : recoverPOST("title");		
-	$content   = isset($data) ? recoverPOST("content", $data[0]["Content"]) 	 : recoverPOST("content");	
-	$situation = isset($data) ? recoverPOST("situation", $data[0]["Situation"])  : recoverPOST("situation");				
+	$title     = isset($data) ? recoverPOST("title", $data[0]["Title"])   		 : recoverPOST("title");
+	$content   = isset($data) ? recoverPOST("content", $data[0]["Content"]) 	 : recoverPOST("content");
+	$situation = isset($data) ? recoverPOST("situation", $data[0]["Situation"])  : recoverPOST("situation");
 	$language  = isset($data) ? recoverPOST("language", $data[0]["Language"])  	 : recoverPOST("language");
 	$pwd   	   = isset($data) ? recoverPOST("pwd", $data[0]["Pwd"])				 : recoverPOST("pwd");
 	$edit      = isset($data) ? TRUE											 : FALSE;
@@ -23,8 +23,7 @@
 				"type" 		=> "file", 
 				"id"		=> "fileselect",
 				"name" 		=> "fileselect[]",
-				"multiple" 	=> "multiple", 
-				"class" 	=> "required", 
+				"multiple" 	=> "multiple",  
 				"field" 	=> __("Upload files"), 
 				"p" 		=> TRUE
 			));
@@ -39,11 +38,9 @@
 
 			print '<div class="clear"></div>';
 
-			if($uploaded) {
-				print formSave($action);
-			}
+			print formSave($action);
 			
-			print formInput(array("name" => "upload", "type" => "hidden", "value" => path(whichApplication() ."/cpanel/upload"), "id" => "upload"));
+			print formInput(array("name" => "resize_value", "type" => "hidden", "value" => __("Do you want to resize?"), "id" => "resize_value"));
 			print formInput(array("name" => "MAX_FILE_SIZE", "type" => "hidden", "value" => "MAX_FILE_SIZE", "id" => "upload"));
 			print formInput(array("name" => "ID", "type" => "hidden", "value" => $ID, "id" => "ID_Post"));
 		print formClose();

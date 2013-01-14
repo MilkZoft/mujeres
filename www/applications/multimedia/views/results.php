@@ -1,8 +1,10 @@
 <?php 
-if(!defined("_access")) die("Error: You don't have permission to access here..."); 
+if(!defined("_access")) {
+	die("Error: You don't have permission to access here..."); 
+}
 
-$caption = __("Manage Jobs");
-$colspan = 8;
+$caption = __("Manage Multimedia");
+$colspan = 9;
 
 echo $search;
 
@@ -24,10 +26,11 @@ $j = 2;
 		<tr>
 			<th>&nbsp;</th>
 			<th>ID</th>
-			<th><?php echo __("Company"); ?></th>
-			<th><?php echo __("Title"); ?></th>
-			<th><?php echo __("Country"); ?></th>
-			<th><?php echo __("Language"); ?></th>
+			<th style="text-align: left;"><?php echo __("Filename"); ?></th>
+			<th><?php echo __("File"); ?></th>
+			<th><?php echo __("Size"); ?></th>
+			<th><?php echo __("Author"); ?></th>
+			<th><?php echo __("Published"); ?></th>
 			<th><?php echo __("Situation"); ?></th>
 			<th><?php echo __("Action"); ?></th>
 		</tr>
@@ -45,7 +48,7 @@ $j = 2;
 	<?php
 		if($tFoot) {
 			foreach($tFoot as $column) {     
-				$ID    = $column["ID_Job"]; 
+				$ID    = $column["ID_File"]; 
 				$color = ($column["Situation"] === "Deleted") ? $colors[$j] : $colors[$i];  
 
 				$i = ($i === 1) ? 0 : 1;
@@ -59,25 +62,27 @@ $j = 2;
 					<td class="center">
 						<?php echo $ID; ?>
 					</td>
-						
-					<td>
-						<?php echo $column["Company"]; ?>
-					</td>
-
-					<td>
+																				
+					<td style="text-align: left;">
 					<?php			
-						$title = cut($column["Title"], 4, "text"); 
-
-						echo $title; 
+						echo stripslashes(cut($column["Filename"], 45, "word")); 
 					?>
 					</td>
-								
+
 					<td class="center">
-						<?php echo $column["Country"]; ?>
+						<a href="<?php echo path($column["URL"], TRUE); ?>" target="_blank">Download</a>
 					</td>
 								
 					<td class="center">
-						<?php echo getLanguage($column["Language"], TRUE); ?>
+						<?php echo getFileSize($column["Size"]); ?>
+					</td>
+								
+					<td class="center">
+						<?php echo $column["Author"]; ?>
+					</td>
+
+					<td class="center">
+						<?php echo howLong($column["Start_Date"]); ?>
 					</td>
 						 
 					<td class="center">
@@ -85,12 +90,8 @@ $j = 2;
 					</td>
 												 
 					<td class="center">
-					<?php 
-						if($column["Situation"] === "Deleted") {					
-							echo getAction(TRUE, $ID);
-						} else {					
-							echo getAction(FALSE, $ID);
-						}
+					<?php  					
+						echo ($column["Situation"] === "Deleted") ? getAction(TRUE, $ID) : getAction(FALSE, $ID, TRUE, FALSE);						
 					?>
 					</td>
 	 			</tr>
@@ -121,4 +122,4 @@ $j = 2;
 	?>					
 </div>
 
-<?php echo $pagination;?>
+<?php echo $pagination; ?>

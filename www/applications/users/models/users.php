@@ -503,6 +503,10 @@ class Users_Model extends ZP_Load {
 	public function getByID($ID) {
 		return $this->Db->find($ID, $this->table, $this->fields);
 	}
+
+	public function getByUsername($username) {
+		return $this->Db->findBy("Username", $username, $this->table, $this->fields);
+	}
 	
 	public function getPrivileges() {
 		return $this->Db->findAll("privileges");
@@ -677,6 +681,26 @@ class Users_Model extends ZP_Load {
 
 	public function getAvatar() {
 		return $this->Db->findBy("ID_User", SESSION("ZanUserID"), $this->table, "Avatar");
+	}
+
+	public function getSocial() {
+		return $this->Db->findBy("ID_User", SESSION("ZanUserID"), $this->table, "Twitter, Facebook, Linkedin, Google, Viadeo");
+	}
+
+	public function saveSocial() {
+		$data = array(
+			"Twitter"  => POST("twitter"),
+			"Facebook" => POST("facebook"),
+			"Linkedin" => POST("linkedin"),
+			"Google"   => POST("google"),
+			"Viadeo"   => POST("viadeo")
+		);
+
+		if($this->Db->update($this->table, $data, SESSION("ZanUserID"))) {
+			return getAlert(__("Data have been saved correctly"), "success");	
+		}
+		
+		return getAlert(__("Update error"));
 	}
 
 }

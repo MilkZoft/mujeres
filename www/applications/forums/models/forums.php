@@ -14,6 +14,7 @@ class Forums_Model extends ZP_Load {
         $this->language = whichLanguage();
 		$this->table    = "forums";
 		$this->fields   = "ID_Forum, Title, Slug, Description, Topics, Replies, Last_Reply, Last_Date, Language, Situation";
+		$this->fieldsPosts = "ID_Post, ID_User, ID_Forum, ID_Parent, Title, Slug, Content, Author, Start_Date, Text_Date, Hour, Visits, Topic, Tags, Language, Situation";
 
 		$this->Data = $this->core("Data");
 
@@ -64,7 +65,8 @@ class Forums_Model extends ZP_Load {
 			"Slug"        => slug(POST("title", "clean")),
 			"Description" => POST("description"),
 			"Language"    => POST("language"),
-            "Situation"   => POST("situation")
+            "Situation"   => POST("situation"),
+            "Last_Date"	  => ""
 		);
 	
 		$this->data = $this->Data->proccess($data, $validations);
@@ -99,14 +101,15 @@ class Forums_Model extends ZP_Load {
 		$json =  array(
 			"alert" => getAlert(__("The post has been saved correctly"), "success"),
 			"title" => '<a href="'. $URL .'" title="'. stripslashes($data["Title"]) .'">'. stripslashes($data["Title"]) .'</a>',
-			"date"  => __("Published") ." ". howLong($data["Start_Date"]) ." ". __("in") ." ". exploding($data["Tags"], "forums/tag/") ." ". __("by") .' <a href="'. path("forums/author/". $data["Author"]) .'">'. $data["Author"] .'</a>'
+			"date"  => __("Published") ." ". howLong($data["Start_Date"]) ." ". __("in") ." ". exploding($data["Tags"], "forums/tag/") ." ". __("by") .' <a href="'. path("forums/author/". $data["Author"]) .'">'. $data["Author"] .'</a>',
+			"description" => stripslashes($data["Content"])
 		);
 
-		echo json_encode($json);
+		echo json($json);
 	}
 	
 	private function save() {
-        if($this->getIDByForum($this->data["Slug"])){
+        if($this->getByForum($this->data["Slug"], POST("language"))) {
             return getAlert(__("This forum already exists"), "error", $this->URL);
         } 
         
@@ -118,10 +121,8 @@ class Forums_Model extends ZP_Load {
 	private function edit() {
         $forum = $this->getIDByForum($this->data["Slug"]);
         
-        if($forum){
-            if($Forum[0]["ID_Forum"] != $this->data["ID_Forum"]){
-                return getAlert(__("This forum already exists"), "error", $this->URL);
-            }
+        if(!$forum){
+            return getAlert(__("The forum does not exist"), "error", $this->URL);
         }
         
         $this->Db->update($this->table, $this->data, POST("ID"));	
@@ -150,5 +151,34 @@ class Forums_Model extends ZP_Load {
 		$query = "SELECT ID_Post, ID_User, ID_Parent, Title, Slug, Content, Author, Start_Date, Tags FROM muu_forums_posts WHERE ID_Post = $postID OR ID_Parent = $postID ORDER BY ID_Parent, ID_Post";
 		
 		return $this->Db->query($query);		
+	}
+
+	public function getIDByForum($slug) {
+		return $this->Db->findBy("Slug", $slug, $this->table, $this->fields);
+	}
+
+	private function search($search, $field) {
+		if($search and $field) {
+			return ($field === "ID") ? $this->Db->find($search, $this->table) : $this->Db->findBySQL("$field LIKE '%$search%'", $this->table, $this->fields);	      
+		} else {
+			return FALSE;
+		}
+	}
+
+	public function getByTag($tag, $limit = FALSE) {
+		$tag = str_replace("-", " ", $tag);
+		
+		return $this->Db->query("SELECT ". $this->fieldsPosts ." FROM muu_forums_posts WHERE (Title LIKE '%$tag%' OR Content LIKE '%$tag%' OR Tags LIKE '%$tag%') AND Language = '$this->language' AND Situation = 'Active' AND ID_Parent = 0 AND ID_Forum = (SELECT ID_Forum FROM muu_forums WHERE Slug = '". segment(1, isLang()) ."' LIMIT 1) ORDER BY ID_Post DESC LIMIT ". $limit);
+		
+	}
+
+	public function count($type = "posts") {
+		if($type === "tag") {
+			$tag = str_replace("-", " ", segment(2, isLang()));
+
+ 	 		$count = $this->Db->query("SELECT COUNT(*) AS Total FROM muu_forums_posts WHERE (Title LIKE '%$tag%' OR Content LIKE '%$tag%' OR Tags LIKE '%$tag%') AND Language = '$this->language' AND Situation = 'Active' AND ID_Parent = 0 AND ID_Forum = (SELECT ID_Forum FROM muu_forums WHERE Slug = '". segment(1, isLang()) ."' LIMIT 1) ORDER BY ID_Post DESC LIMIT ". $limit);
+
+ 	 		return $count[0]["Total"];
+		}
 	}
 }

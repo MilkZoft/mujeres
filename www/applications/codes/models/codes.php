@@ -74,11 +74,30 @@ class Codes_Model extends ZP_Load {
 			"title" => "required"
 		);
 
-		$this->helper("time");
+		$this->id = POST("ID");
 
+		$this->helper(array("time", "alerts"));
+
+		if(POST("author")) {
+			$this->Users_Model = $this->model("Users_Model");
+
+			$data = $this->Users_Model->getByUsername(POST("author"));
+			if(isset($data[0]["ID_User"])) {
+				$ID_User = $data[0]["ID_User"];
+			} else {
+				$ID_User = FALSE;
+			}
+		} else {
+			$ID_User = SESSION("ZanUserID");
+		}
+
+		if(!$ID_User) {
+			return getAlert("Author is not a valid user");
+		}
+		
 		$data = array(
-			"ID_User" 	 => SESSION("ZanUserID"),
-			"Author"  	 => SESSION("ZanUser"),
+			"ID_User" 	 => $ID_User,
+			"Author"  	 => POST("author") ? POST("author") : SESSION("ZanUser"),
 			"Slug"    	 => slug(POST("title", "clean")),
             "Languages"  => $this->implode(POST("syntaxname", "clean"))
 		);
@@ -93,7 +112,6 @@ class Codes_Model extends ZP_Load {
 		$this->Data->ignore(array("file", "programming", "syntax", "syntaxname", "name", "code"));
 		
 		$this->data = $this->Data->proccess($data, $validations);
-		$this->id   = POST("ID");
                 
         if(isset($this->data["error"])) {
 			return $this->data["error"];
@@ -332,7 +350,11 @@ class Codes_Model extends ZP_Load {
 	}
 
 	public function updateViews($codeID) {
-		//return $this->Db->updateBySQL($this->table, "Views = (Views) + 1 WHERE ID_Code = '$codeID' AND Situation = 'Active'");
+		$this->Cache = $this->core("Cache");
+
+		$views = $this->Cache->getValue($codeID, "codes", "Views", TRUE);
+
+		return $this->Cache->setValue($codeID, $views + 1, "codes", "Views", 86400);
 	}
 
     public function setReport($ID) {

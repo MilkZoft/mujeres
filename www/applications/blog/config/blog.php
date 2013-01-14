@@ -6,11 +6,10 @@ if(!defined("_access")) {
 	die("Error: You don't have permission to access here...");
 }
 
+define("_muralSize", "940x320px");
+
 if(!defined("_maxLimit")) {
 	define("_maxLimit", 10);
 }
 
 define("_lock", "www/lib/images/icons/blog/lock.png");
-
-define("_muralWidth", 940);
-define("_muralHeight", 320);

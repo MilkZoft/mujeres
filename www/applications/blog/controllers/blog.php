@@ -16,7 +16,6 @@ class Blog_Controller extends ZP_Load {
 		$this->Cache 	  = $this->core("Cache");
 		
 		$this->Blog_Model = $this->model("Blog_Model");
-		$this->Tags_Model = $this->model("Tags_Model");
 				
 		$this->Templates->theme();
 
@@ -156,7 +155,10 @@ class Blog_Controller extends ZP_Load {
 	}
 	
 	public function mural($limit = 10) {
-		$data = $this->Cache->data("mural-$limit-". $this->language, "blog", $this->Blog_Model, "getMurals", array($limit));
+		$this->CSS("mural", $this->application, TRUE);
+		$this->CSS("slides", NULL, TRUE);
+		
+		$data = $this->Cache->data("mural-$limit-". $this->language, "blog", $this->Blog_Model, "getMural", array($limit));
 
 		if($data) {
 			$vars["mural"] = $data;				

@@ -13,8 +13,7 @@ class Blog_Model extends ZP_Load {
 		
 		$this->language = whichLanguage();
 		$this->table 	= "blog";
-		$this->fields   = "ID_Post, ID_User, Title, Slug, Content, Tags, Author, Start_Date, Year, Month, Day, Views, Image_Small, Image_Mural, Image_Medium, Comments, Enable_Comments, Language, Pwd, Buffer, Code, Situation";
-		$this->config("blog");
+		$this->fields   = "ID_Post, ID_User, Title, Slug, Content, Tags, Author, Start_Date, Year, Month, Day, Views, Image_Mural, Image_Thumbnail, Image_Small, Image_Medium, Image_Original, Comments, Enable_Comments, Language, Pwd, Buffer, Code, Situation";
 
 		$this->Data = $this->core("Data");
 
@@ -28,7 +27,7 @@ class Blog_Model extends ZP_Load {
 	public function cpanel($action, $limit = NULL, $order = "Language DESC", $search = NULL, $field = NULL, $trash = FALSE) {
 		if($action === "edit" or $action === "save") {
 			$validation = $this->editOrSave($action);
-			
+		
 			if($validation) {
 				return $validation;
 			}
@@ -73,9 +72,9 @@ class Blog_Model extends ZP_Load {
 		$dir = "www/lib/files/images";
 
 		$this->Files = $this->core("Files");
-		$this->mural = FILES("mural");
 
 		$this->postImage = $this->Files->uploadImage($dir ."/blog/", "image", "resize", TRUE, TRUE, TRUE, FALSE, TRUE);
+		$this->postMural = $this->Files->uploadImage($dir ."/mural/", "mural", "mural");
 		
 		if($action === "edit") {
 			$this->post = $this->Db->find(POST("ID"), $this->table);
@@ -85,8 +84,6 @@ class Blog_Model extends ZP_Load {
 			$currentMediumImg = $this->post[0]["Image_Medium"];
 			$currentThumbnailImg = $this->post[0]["Image_Thumbnail"];
 		} 
-        
-        $this->postMural = $this->Files->uploadImage($dir ."/mural/", "mural", "mural");
 
         if(is_array($this->postMural)) {
         	return getAlert($this->postMural["alert"]);
@@ -122,9 +119,6 @@ class Blog_Model extends ZP_Load {
 			"Slug"            => slug(POST("title", "clean")),
 			"Content"         => setCode(decode(POST("content", "clean")), FALSE),
 			"Author"          => POST("author") ? POST("author") : SESSION("ZanUser"),
-			"Year"	          => date("Y"),
-			"Month"	          => date("m"),
-			"Day"	          => date("d"),
 			"Image_Original"  => isset($this->postImage["original"]) ? $this->postImage["original"] : NULL,
 			"Image_Small"  	  => isset($this->postImage["small"])  ? $this->postImage["small"]  : NULL,
 			"Image_Mural"     => isset($this->postMural) ? $this->postMural : NULL,
@@ -139,6 +133,9 @@ class Blog_Model extends ZP_Load {
 		if($action === "save") {
 			$data["Start_Date"] = now(4);
 			$data["Text_Date"]  = decode(now(2));
+			$data["Year"]	    = date("Y");
+			$data["Month"]	    = date("m");
+			$data["Day"]	    = date("d");
 		} else {
 			$data["Modified_Date"] = now(4);
 		}
@@ -224,11 +221,9 @@ class Blog_Model extends ZP_Load {
 		$this->Cache = $this->core("Cache");
 		
 		$this->Cache->removeAll("blog");
-
-		$this->Db->update($this->table, $this->data, POST("ID"));
-
-		$prueba = $this->Db->find(POST("ID"), $this->table);
 		
+		$this->Db->update($this->table, $this->data, POST("ID"));
+	
 		return getAlert(__("The post has been edited correctly"), "success");
 	}
 
@@ -275,14 +270,6 @@ class Blog_Model extends ZP_Load {
 		} else {
 			return FALSE;
 		}
-	}
-
-	public function getMurals($limit) {
-		return $this->Db->findBySQL("Image_Mural != '' AND Situation != 'Deleted'", $this->table, $this->fields, NULL, "ID_Post DESC", $limit);
-	}
-
-	public function getMuralByID($ID_Post) {				
-		return $this->Db->findBy("ID_Post", $ID_Post, "mural", "Title, URL, Image");			
 	}
 
 	public function getAllByUser() {
@@ -355,6 +342,15 @@ class Blog_Model extends ZP_Load {
 		return $this->Db->findBySQL("Language = '$this->language' AND Situation = 'Active'", $this->table, $this->fields, NULL, "RAND()", $limit);
 	}
 	
+	public function getMural($limit) {		
+		return $this->Db->findAll("mural", "Title, URL, Image", NULL, "ID_Post DESC", $limit);				
+	}
+	
+	public function getMuralByID($ID_Post) {				
+		return $this->Db->findBy("ID_Post", $ID_Post, "mural", "Title, URL, Image");			
+	}
+	
+	
 	public function getPosts($limit) {	
 		return $this->Db->findBySQL("Language = '$this->language' AND Situation = 'Active'", $this->table, $this->fields, NULL, "ID_Post DESC", $limit);
 	}
@@ -362,8 +358,12 @@ class Blog_Model extends ZP_Load {
 	public function getPost($year, $month, $day, $slug) {		
 		$post = $this->Db->findBySQL("Slug = '$slug' AND Year = '$year' AND Month = '$month' AND Day = '$day' AND Language = '$this->language' AND Situation = 'Active'", $this->table, $this->fields);
 		
-		if($post) {						
-			//$this->Db->updateBySQL("blog", "Views = (Views) + 1 WHERE ID_Post = '". $post[0]["ID_Post"] ."'");				
+		if($post) {
+			$this->Cache = $this->core("Cache");
+
+			$views = $this->Cache->getValue($post[0]["ID_Post"], "blog", "Views", TRUE);
+
+			$this->Cache->setValue($post[0]["ID_Post"], $views + 1, "blog", "Views", 86400);
 		
 			$data[0]["post"] = $post;
 									
@@ -402,7 +402,16 @@ class Blog_Model extends ZP_Load {
 		
 		return $data;
 	}
-
+	
+	public function deleteMural() {
+		$this->ID_Post = POST("ID_Post");
+		$this->mural   = POST("muralExist");
+	
+		unlink($this->mural);
+					
+		$this->Db->deleteBy("ID_Post", $this->ID_Post, "mural");
+	}
+	
 	public function removePassword($ID) {
 		$this->Db->update($this->table, array("Pwd" => ""), $ID);		
 	}

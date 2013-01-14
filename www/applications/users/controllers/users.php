@@ -183,13 +183,17 @@ class Users_Controller extends ZP_Load {
 		}
 	}
 
-	public function edit($scope = "about") {
-		$this->helper(array("forms", "html"));
-		$this->config("users", $this->application);
-		$this->css("forms", "cpanel");
-		$this->css("users", $this->application);
+	public function about() {
+		isConnected();
 
-		if($scope === "about") {
+		$data = $this->Users_Model->getInformation();
+
+		if($data) {
+			$this->helper(array("forms", "html"));
+			$this->config("users", $this->application);
+			$this->css("forms", "cpanel");
+			$this->css("users", $this->application);
+
 			if(POST("save")) {
 				$this->helper("alerts");
 				$vars["alert"] = $this->Users_Model->setInformation();
@@ -209,10 +213,12 @@ class Users_Controller extends ZP_Load {
 				);
 			}
 
+			$this->title(__("About me"));
+
 			$vars["countries"]  = $countries;
 			$vars["view"] 		= $this->view("about", TRUE);
-			$vars["href"]  		= path("users/edit/about/");
-			$vars["data"]  		= $this->Users_Model->getInformation();
+			$vars["href"]  		= path("users/about/");
+			$vars["data"]  		= $data;
 
 			if($country = recoverPOST("country", encode($vars["data"][0]["Country"]))) {
 				$list_of_cities = $this->Cache->data("$country-cities", "world", $this->Configuration_Model, "getCities", array($country), 86400);
@@ -228,20 +234,46 @@ class Users_Controller extends ZP_Load {
 			}
 			
 			$this->render("content", $vars);
-		} elseif($scope === "password") {
-			if(POST("save")) {
-				$this->helper("alerts");
-				$vars["alert"] = $this->Users_Model->changePassword();
-			}
+		} else {
+			redirect();
+		}
+	}
 
-			$this->js("bootstrap");
-			$this->js("www/lib/themes/newcodejobs/js/requestpassword.js");
+	public function password() {
+		isConnected();
+		
+		$this->helper(array("forms", "html"));
+		$this->config("users", $this->application);
+		$this->css("forms", "cpanel");
+		$this->css("users", $this->application);
 
-			$vars["view"] = $this->view("password", TRUE);
-			$vars["href"] = path("users/edit/password/");
+		if(POST("save")) {
+			$this->helper("alerts");
+			$vars["alert"] = $this->Users_Model->changePassword();
+		}
 
-			$this->render("content", $vars);
-		} elseif($scope === "email") {
+		$this->js("bootstrap");
+		$this->js("www/lib/themes/newcodejobs/js/requestpassword.js");
+
+		$this->title(htmlentities(__("Change password")));
+
+		$vars["view"] = $this->view("password", TRUE);
+		$vars["href"] = path("users/password/");
+
+		$this->render("content", $vars);
+	}
+
+	public function email() {
+		isConnected();
+
+		$data = $this->Users_Model->getEmail();
+		
+		if($data) {
+			$this->helper(array("forms", "html"));
+			$this->config("users", $this->application);
+			$this->css("forms", "cpanel");
+			$this->css("users", $this->application);
+
 			if(POST("save")) {
 				$this->helper("alerts");
 				$vars["alert"] = $this->Users_Model->changeEmail();
@@ -250,17 +282,70 @@ class Users_Controller extends ZP_Load {
 			$this->js("bootstrap");
 			$this->js("www/lib/themes/newcodejobs/js/requestpassword.js");
 
+			$this->title(htmlentities(__("Change e-mail")));
+
 			$vars["view"] = $this->view("email", TRUE);
-			$vars["href"] = path("users/edit/email/");
-			$vars["data"] = $this->Users_Model->getEmail();
+			$vars["href"] = path("users/email/");
+			$vars["data"] = $data;
 
 			$this->render("content", $vars);
-		} elseif($scope === "avatar") {
+		} else {
+			redirect();
+		}
+	}
+
+	public function avatar() {
+		isConnected();
+
+		$data = $this->Users_Model->getAvatar();
+		
+		if($data) {
+			$this->helper(array("forms", "html"));
+			$this->config("users", $this->application);
+			$this->css("forms", "cpanel");
+			$this->css("users", $this->application);
+			$this->css("avatar", $this->application);
+			$this->js("jquery.jcrop.js");
+			$this->js("avatar", $this->application);
+
+			$this->title(__("Avatar"));
+
 			$vars["view"] = $this->view("avatar", TRUE);
-			$vars["href"] = path("users/edit/avatar/");
-			$vars["data"] = $this->Users_Model->getAvatar();
+			$vars["href"] = path("users/avatar/");
+			$vars["data"] = $data;
 
 			$this->render("content", $vars);
+		} else {
+			redirect();
+		}
+	}
+
+	public function social() {
+		isConnected();
+
+		if(POST("save")) {
+			$this->helper("alerts");
+
+			$vars["alert"] = $this->Users_Model->saveSocial();
+		}
+
+		$data = $this->Users_Model->getSocial();
+
+		if($data) {
+			$this->helper(array("forms", "html"));
+			$this->config("users", $this->application);
+			$this->css("forms", "cpanel");
+			$this->css("users", $this->application);
+
+			$this->title(__("Social Networks"));
+
+			$vars["view"] = $this->view("social", TRUE);
+			$vars["href"] = path("users/social/");
+			$vars["data"] = $data;
+
+			$this->render("content", $vars);
+		} else {
+			redirect();
 		}
 	}
 }

@@ -6,18 +6,19 @@
 	$ID        = isset($data) ? recoverPOST("ID", $data[0]["ID_Post"]) 			 : 0;
 	$title     = isset($data) ? recoverPOST("title", $data[0]["Title"])   		 : recoverPOST("title");		
 	$tags      = isset($data) ? recoverPOST("tags", $data[0]["Tags"])   		 : recoverPOST("tags");
-	$content   = isset($data) ? str_replace('"', "'", $data[0]["Content"])		 : recoverPOST("content");	
+	$content   = isset($data) ? recoverPOST("content", $data[0]["Content"])		 : recoverPOST("content");	
 	$situation = isset($data) ? recoverPOST("situation", $data[0]["Situation"])  : recoverPOST("situation");				
 	$language  = isset($data) ? recoverPOST("language", $data[0]["Language"])  	 : recoverPOST("language");
 	$author    = isset($data) ? recoverPOST("author", $data[0]["Author"])        : SESSION("ZanUser");
 	$userID    = isset($data) ? recoverPOST("ID_User", $data[0]["ID_User"])      : SESSION("ZanUserID");
-	$buffer    = isset($data) ? recoverPOST("buffer", $data[0]["Buffer"])		 : 1;
+	$buffer    = isset($data) ? (int)recoverPOST("buffer", $data[0]["Buffer"])	 : 1;
 	$code      = isset($data) ? recoverPOST("code", $data[0]["Code"])		 	 : recoverPOST("code");
 	$mural     = isset($data) ? $data[0]["Image_Mural"]                          : NULL;
 	$image 	   = isset($data) ? $data[0]["Image_Medium"]						 : NULL;
 	$edit      = isset($data) ? TRUE											 : FALSE;
 	$action	   = isset($data) ? "edit"											 : "save";
 	$href 	   = isset($data) ? path(whichApplication() ."/cpanel/$action/$ID/") : path(whichApplication() ."/cpanel/add");
+	$enable_comments = isset($data) ? (int)recoverPOST("enable_comments", $data[0]["Enable_Comments"]) : 1;
 
 	$editor    = _get("defaultEditor") === "Redactor" ? 1 : 2;
 	
@@ -25,7 +26,7 @@
 		echo formOpen($href, "form-add", "form-add", NULL, "post", "multipart/form-data");
 			echo p(__(ucfirst(whichApplication())), "resalt");
 			
-			echo isset($alert) ? $alert : '<div id="alert-message" class="alert alert-success no-display"></div>';
+			echo isset($alert) ? $alert : NULL;
 
 			echo formInput(array(	
 				"id"    => "title",
@@ -45,6 +46,23 @@
 				"value" => $tags
 			));
 
+			echo formInput(array(	
+				"name" 	=> "mural", 
+				"type"  => "file",
+				"class" => "add-img", 
+				"field" => __("Mural"), 	
+				"p" 	=> TRUE
+			));
+
+			if($action === "edit" and $mural != "") { 
+				echo p(img(path($mural, TRUE), array("style" => "max-width:700px;", "class" => "mural")));
+				echo formInput(array(	
+					"name" 	=> "delete_mural", 
+					"type"  => "checkbox",
+					"p" 	=> FALSE
+				)) . " " . __("Delete Mural")  . "<br /><br />";
+			} 
+
 			$options = array(
 				array("value" => 1, "option" => "Redactor", "selected" => ($editor === 1 ? TRUE : FALSE)),
 				array("value" => 2, "option" => "markItUp!", "selected" => ($editor === 2 ? TRUE : FALSE))
@@ -59,23 +77,6 @@
 				$options
 			);
 
-			echo formInput(array(	
-				"name" 	=> "mural", 
-				"type"  => "file",
-				"class" => "add-img", 
-				"field" => __("Mural"), 	
-				"p" 	=> TRUE
-			));
-
-			if($action === "edit" and $mural != "") { 
-				echo p(img(path($mural, TRUE), array("class" => "mural")));
-				echo formInput(array(	
-					"name" 	=> "delete_mural", 
-					"type"  => "checkbox",
-					"p" 	=> FALSE
-				)) . " " . __("Delete Mural")  . "<br /><br />";
-			} 
-
 			echo formTextarea(array(	 
 				"id"     => "redactor",
 				"name" 	 => "content", 
@@ -85,6 +86,10 @@
 				"p" 	 => TRUE, 
 				"value"  => stripslashes($content)
 			));
+
+			echo '<p><span id="show-multimedia" class="field pointer">&raquo; Multimedia</span></p>';
+
+			echo getFilesFromMultimedia($multimedia);
 
 			echo formInput(array(	
 				"name" 	=> "image", 
@@ -101,7 +106,7 @@
 					"type"  => "checkbox",
 					"p" 	=> FALSE
 				)) . " " . __("Delete Image")  . "<br /><br />";
-			} 
+			}
 
 			echo formInput(array(	
 				"id"    => "author",
@@ -115,8 +120,8 @@
 			echo formField(NULL, __("Language of the post") ."<br />". getLanguagesInput($language, "language", "select"));
 
 			$options = array(
-				0 => array("value" => 1, "option" => __("Yes"), "selected" => TRUE),
-				1 => array("value" => 0, "option" => __("No"))
+				0 => array("value" => 1, "option" => __("Yes"), "selected" => ($enable_comments === 1) ? TRUE : FALSE),
+				1 => array("value" => 0, "option" => __("No"),  "selected" => ($enable_comments === 0) ? TRUE : FALSE)
 			);
 
 			echo formSelect(array(
