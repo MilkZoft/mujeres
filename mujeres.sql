@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.5
+-- version 3.2.4
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 10-01-2013 a las 16:15:08
--- Versión del servidor: 5.5.29-log
--- Versión de PHP: 5.4.10
+-- Host: localhost
+-- Generation Time: Jan 14, 2013 at 05:20 AM
+-- Server version: 5.1.44
+-- PHP Version: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -17,13 +16,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `mujeres`
+-- Database: `mujeres`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_ads`
+-- Table structure for table `muu_ads`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_ads` (
@@ -42,19 +41,11 @@ CREATE TABLE IF NOT EXISTS `muu_ads` (
   `Situation` varchar(15) NOT NULL DEFAULT 'Active',
   PRIMARY KEY (`ID_Ad`),
   KEY `ID_User` (`ID_User`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 
 --
--- Volcado de datos para la tabla `muu_ads`
---
-
-INSERT INTO `muu_ads` (`ID_Ad`, `ID_User`, `Title`, `Position`, `Banner`, `URL`, `Code`, `Clicks`, `Start_Date`, `End_Date`, `Time`, `Principal`, `Situation`) VALUES
-(1, 1, 'Anuncio 2', 'Top', 'www/lib/files/images/ads/1084b_45a3e-banner2.png', 'http://www.google.com', '', 0, 1339030862, 1341450062, 5000, 1, 'Deleted');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `muu_applications`
+-- Table structure for table `muu_applications`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_applications` (
@@ -67,10 +58,10 @@ CREATE TABLE IF NOT EXISTS `muu_applications` (
   `Comments` tinyint(1) NOT NULL DEFAULT '0',
   `Situation` varchar(15) NOT NULL DEFAULT 'Active',
   PRIMARY KEY (`ID_Application`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
--- Volcado de datos para la tabla `muu_applications`
+-- Dumping data for table `muu_applications`
 --
 
 INSERT INTO `muu_applications` (`ID_Application`, `Title`, `Slug`, `CPanel`, `Adding`, `BeDefault`, `Comments`, `Situation`) VALUES
@@ -91,12 +82,13 @@ INSERT INTO `muu_applications` (`ID_Application`, `Title`, `Slug`, `CPanel`, `Ad
 (15, 'Videos', 'videos', 1, 1, 1, 0, 'Active'),
 (16, 'Works', 'works', 1, 1, 1, 0, 'Active'),
 (17, 'Codes', 'codes', 1, 1, 1, 0, 'Active'),
-(18, 'Jobs', 'jobs', 1, 1, 1, 0, 'Active');
+(18, 'Jobs', 'jobs', 1, 1, 1, 0, 'Active'),
+(19, 'Multimedia', 'multimedia', 1, 1, 1, 0, 'Active');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_blog`
+-- Table structure for table `muu_blog`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_blog` (
@@ -108,17 +100,17 @@ CREATE TABLE IF NOT EXISTS `muu_blog` (
   `Tags` varchar(250) NOT NULL,
   `Author` varchar(50) NOT NULL,
   `Start_Date` int(11) NOT NULL DEFAULT '0',
-  `Modified_Date` int(11) DEFAULT NULL,
+  `Modified_Date` int(11) NOT NULL DEFAULT '0',
   `Text_Date` varchar(40) NOT NULL,
   `Year` varchar(4) NOT NULL,
   `Month` varchar(2) NOT NULL,
   `Day` varchar(2) NOT NULL,
   `Views` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `Image_Original` varchar(250) DEFAULT NULL,
-  `Image_Small` varchar(250) DEFAULT NULL,
   `Image_Mural` varchar(250) DEFAULT NULL,
-  `Image_Medium` varchar(250) NOT NULL,
   `Image_Thumbnail` varchar(250) DEFAULT NULL,
+  `Image_Small` varchar(250) DEFAULT NULL,
+  `Image_Medium` varchar(250) NOT NULL,
+  `Image_Original` varchar(250) DEFAULT NULL,
   `Comments` mediumint(8) NOT NULL DEFAULT '0',
   `Enable_Comments` tinyint(1) NOT NULL DEFAULT '0',
   `Language` varchar(20) NOT NULL DEFAULT 'Spanish',
@@ -128,23 +120,12 @@ CREATE TABLE IF NOT EXISTS `muu_blog` (
   `Situation` varchar(15) NOT NULL DEFAULT 'Active',
   PRIMARY KEY (`ID_Post`),
   KEY `ID_User` (`ID_User`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
---
--- Volcado de datos para la tabla `muu_blog`
---
-
-INSERT INTO `muu_blog` (`ID_Post`, `ID_User`, `Title`, `Slug`, `Content`, `Tags`, `Author`, `Start_Date`, `Modified_Date`, `Text_Date`, `Year`, `Month`, `Day`, `Views`, `Image_Original`, `Image_Small`, `Image_Mural`, `Image_Medium`, `Image_Thumbnail`, `Comments`, `Enable_Comments`, `Language`, `Pwd`, `Buffer`, `Code`, `Situation`) VALUES
-(1, 1, 'dqwdqwd', 'dqwdqwd', 'qwdqwdqwd', 'qwdwqdd', 'admin', 1357613751, NULL, 'Lunes, 07 de Enero de 2013', '2013', '01', '07', 0, '', '', '', '', NULL, 0, 1, 'Spanish', '', 1, '9B4EF2321C', 'Draft'),
-(2, 1, 'dawsdsadsadasd123', 'dawsdsadsadasd123', 'eqweqweqweqwe', 'adasdqawd', 'admin', 1357613776, 1357618064, 'Lunes, 07 de Enero de 2013', '2013', '01', '07', 0, '', '', 'www/lib/files/images/mural/e9214_milk-thumb940x320.jpg', '', '', 0, 1, 'Spanish', '', 1, 'D13077423F', 'Active'),
-(4, 1, '1234515123123', '1234515123123', 'adsasdadad', '', 'admin', 1357618282, 1357620463, 'Lunes, 07 de Enero de 2013', '2013', '01', '07', 0, '', '', '', '', '', 0, 1, 'Spanish', '', 1, '19BA99C666', 'Draft'),
-(5, 1, 'Prueba', 'prueba', 'dasdasdsadas', 'alalalala', 'admin', 1357620493, 1357623251, 'Lunes, 07 de Enero de 2013', '2013', '01', '07', 0, '', '', 'www/lib/files/images/mural/a1b3c_milk-thumb940x320.jpg', '', '', 0, 1, 'Spanish', '', 1, '9364F2F88D', 'Draft'),
-(6, 1, 'Hola Mundo', 'hola-mundo', 'Contenido de prueba', '', 'admin', 1357701881, NULL, 'Martes, 08 de Enero de 2013', '2013', '01', '08', 0, '', '', 'www/lib/files/images/mural/c9ddc_milk-thumb940x320.jpg', '', '', 0, 1, 'Spanish', '', 1, 'DD245155BA', 'Draft');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_bookmarks`
+-- Table structure for table `muu_bookmarks`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_bookmarks` (
@@ -165,22 +146,10 @@ CREATE TABLE IF NOT EXISTS `muu_bookmarks` (
   `Situation` varchar(15) NOT NULL DEFAULT 'Active',
   PRIMARY KEY (`ID_Bookmark`),
   KEY `ID_User` (`ID_User`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- Volcado de datos para la tabla `muu_bookmarks`
---
-
-INSERT INTO `muu_bookmarks` (`ID_Bookmark`, `ID_User`, `Title`, `Slug`, `URL`, `Description`, `Tags`, `Author`, `Views`, `Likes`, `Dislikes`, `Reported`, `Language`, `Start_Date`, `Situation`) VALUES
-(1, 1, 'How to create a Debian .deb package', 'how-to-create-a-debian-deb-package', 'http://blog.serverdensity.com/2010/02/05/how-to-create-a-debian-deb-package/', 'A few weeks ago we announced that the agent for our server monitoring application, Server Density, was available as a Debian or Red Hat package, with associated repositories. Over my next few posts I will be outlining how we created our Linux-based packages and repositories, and what our steps are going to be to improve these processes in the future.', 'linux, debian, ubuntu, ror', 'codejobs', 6, 0, 0, 0, 'English', 1332738072, 'Active'),
-(2, 1, 'Guardar en disco con HTML5 y Javascript: SessionStorage y LocalStorage', 'guardar-en-disco-con-html5-y-javascript-sessionstorage-y-localstorage', 'http://www.cristalab.com/tutoriales/guardar-en-disco-con-html5-y-javascript-sessionstorage-y-localst', 'Si hay algo que siempre se extrañó de HTML es en alguna forma de almacenar datos, que ayude al usuario a una mejor movilidad mientras navega nuestras páginas.', 'ror, html5, javascript, sessionstorage, localstorage', 'codejobs', 22, 0, 1, 0, 'Spanish', 1332738072, 'Active'),
-(3, 1, 'Migrating Rails&RJS From Prototype To JQuery', 'migrating-rails-rjs-from-prototype-to-jquery', 'http://dzone.com/snippets/migrating-railsrjs-prototype', 'I was changing prototype to jsquery in my Rails app. To make my AJAX+RJS stuff work I tried jrails gem. For some reason AJAX responses were rendedered to whole page, instead of evaluating the returned JS. So i did the hack. I took this piece of jrails and put it in my /lib folder.', 'rails, ror, rjs, jquery', 'codejobs', 17, 0, 0, 0, 'English', 1337738320, 'Active'),
-(4, 1, 'Capistrano: Deploy Rails Twice To The Same Machine', 'capistrano-deploy-rails-twice-to-the-same-machine', 'http://dzone.com/snippets/capistrano-deploy-rails-twice', 'Capistrano is oriented so it deploys to the same directory on several machines. This means you can''t deploy to two different locations on the same machine. The following recipe in Capfile will allow you to duplicate your main rails app in a second directory. You can schedule it to run automatically with every deploy or just do it manually. I included database migrations by default. Remove the shared config line if you don''t have it.', 'capistrano, ror, rails', 'codejobs', 36, 1, 0, 0, 'English', 1337738320, 'Active');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `muu_codes`
+-- Table structure for table `muu_codes`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_codes` (
@@ -200,21 +169,10 @@ CREATE TABLE IF NOT EXISTS `muu_codes` (
   `Language` varchar(20) NOT NULL DEFAULT 'English',
   `Situation` varchar(10) NOT NULL DEFAULT 'Active',
   PRIMARY KEY (`ID_Code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Volcado de datos para la tabla `muu_codes`
---
-
-INSERT INTO `muu_codes` (`ID_Code`, `ID_User`, `Title`, `Description`, `Slug`, `Languages`, `Author`, `Start_Date`, `Text_Date`, `Views`, `Likes`, `Dislikes`, `Reported`, `Language`, `Situation`) VALUES
-(1, 1, 'Mi primera página web', 'Forma de incrustar un archivo CSS.', 'mi-primera-pagina-web', 'CSS, HTML', 'admin', 1343549198, 'Sunday, 29 de July de 2012', 1, 1, 0, 0, 'Spanish', 'Active'),
-(2, 1, 'Mostrar información en PHP', NULL, 'mostrar-informacion-en-php', 'PHP', 'admin', 1342473272, 'Monday, 16 de Julio de 2012', 2, 0, 0, 0, 'Spanish', 'Active'),
-(3, 1, 'My first webpage', NULL, 'my-first-webpage', 'CSS, HTML', 'admin', 1343549249, 'Sunday, 29 de July de 2012', 1, 0, 0, 0, 'English', 'Active');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `muu_codes_files`
+-- Table structure for table `muu_codes_files`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_codes_files` (
@@ -226,23 +184,12 @@ CREATE TABLE IF NOT EXISTS `muu_codes_files` (
   PRIMARY KEY (`ID_File`),
   KEY `ID_Code` (`ID_Code`),
   KEY `ID_Syntax` (`ID_Syntax`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- Volcado de datos para la tabla `muu_codes_files`
---
-
-INSERT INTO `muu_codes_files` (`ID_File`, `ID_Code`, `Name`, `ID_Syntax`, `Code`) VALUES
-(1, 1, 'pagina.html', 6, '<!DOCTYPE html>\r\n<html lang="es">\r\n<head>\r\n  <meta charset="utf-8" />\r\n  <title>Título de la página</title>\r\n  <link href="estilo.css" />\r\n</head>\r\n<body>\r\n  Esta es mi primera página web.\r\n</body>\r\n</html>'),
-(2, 1, 'estilo.css', 7, '/* Estilo del cuerpo */\r\n\r\nbody {\r\n  background-color: lightyellow;\r\n  margin: 10px;\r\n}'),
-(3, 2, 'info.php', 4, '<?php\r\n // La siguiente línea muestra información\r\n phpinfo();\r\n?>'),
-(4, 3, 'page.html', 6, '<!DOCTYPE html>\r\n<html lang="en">\r\n<head>\r\n  <meta charset="utf-8" />\r\n  <title>Title''s webpage</title>\r\n  <link href="estilo.css" />\r\n</head>\r\n<body>\r\n  This is my first webpage.\r\n</body>\r\n</html>'),
-(5, 3, 'style.css', 7, '/* Body''s style */\r\n\r\nbody {\r\n  background-color: lightyellow;\r\n  margin: 10px;\r\n}');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_codes_syntax`
+-- Table structure for table `muu_codes_syntax`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_codes_syntax` (
@@ -255,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `muu_codes_syntax` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Volcado de datos para la tabla `muu_codes_syntax`
+-- Dumping data for table `muu_codes_syntax`
 --
 
 INSERT INTO `muu_codes_syntax` (`ID_Syntax`, `Name`, `MIME`, `Filename`, `Extension`) VALUES
@@ -270,7 +217,7 @@ INSERT INTO `muu_codes_syntax` (`ID_Syntax`, `Name`, `MIME`, `Filename`, `Extens
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_comments`
+-- Table structure for table `muu_comments`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_comments` (
@@ -286,10 +233,15 @@ CREATE TABLE IF NOT EXISTS `muu_comments` (
   KEY `ID_User` (`ID_User`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_comments`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_companies`
+-- Table structure for table `muu_companies`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_companies` (
@@ -318,10 +270,15 @@ CREATE TABLE IF NOT EXISTS `muu_companies` (
   PRIMARY KEY (`ID_Company`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_companies`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_configuration`
+-- Table structure for table `muu_configuration`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_configuration` (
@@ -348,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `muu_configuration` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Volcado de datos para la tabla `muu_configuration`
+-- Dumping data for table `muu_configuration`
 --
 
 INSERT INTO `muu_configuration` (`ID_Configuration`, `Name`, `Slogan_English`, `Slogan_Spanish`, `Slogan_French`, `Slogan_Portuguese`, `Slogan_Italian`, `URL`, `Lang`, `Language`, `Theme`, `Validation`, `Application`, `Editor`, `Message`, `Activation`, `Email_Recieve`, `Email_Send`, `Situation`) VALUES
@@ -357,7 +314,7 @@ INSERT INTO `muu_configuration` (`ID_Configuration`, `Name`, `Slogan_English`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_categories`
+-- Table structure for table `muu_courses_categories`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_categories` (
@@ -371,10 +328,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_categories` (
   PRIMARY KEY (`ID_Category`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_courses_categories`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_enrollments`
+-- Table structure for table `muu_courses_enrollments`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_enrollments` (
@@ -387,10 +349,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_enrollments` (
   PRIMARY KEY (`ID_Enrollment`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_courses_enrollments`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_help`
+-- Table structure for table `muu_courses_help`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_help` (
@@ -402,10 +369,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_help` (
   PRIMARY KEY (`ID_Help`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_courses_help`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_lessons`
+-- Table structure for table `muu_courses_lessons`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_lessons` (
@@ -416,10 +388,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_lessons` (
   PRIMARY KEY (`ID_Lesson`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_courses_lessons`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_material`
+-- Table structure for table `muu_courses_material`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_material` (
@@ -432,10 +409,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_material` (
   PRIMARY KEY (`ID_Material`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_courses_material`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_resources`
+-- Table structure for table `muu_courses_resources`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_resources` (
@@ -447,10 +429,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_resources` (
   PRIMARY KEY (`ID_Resource`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_courses_resources`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_roles`
+-- Table structure for table `muu_courses_roles`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_roles` (
@@ -461,10 +448,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_roles` (
   PRIMARY KEY (`ID_Role`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_courses_roles`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_students`
+-- Table structure for table `muu_courses_students`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_students` (
@@ -488,10 +480,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_students` (
   PRIMARY KEY (`ID_Student`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_courses_students`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_students_archive`
+-- Table structure for table `muu_courses_students_archive`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_students_archive` (
@@ -499,10 +496,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_students_archive` (
   `ID_Test` mediumint(8) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `muu_courses_students_archive`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_tests`
+-- Table structure for table `muu_courses_tests`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_tests` (
@@ -517,10 +519,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_tests` (
   PRIMARY KEY (`ID_Test`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_courses_tests`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_tests_answers`
+-- Table structure for table `muu_courses_tests_answers`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_tests_answers` (
@@ -528,10 +535,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_tests_answers` (
   `Answer` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `muu_courses_tests_answers`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_tests_questions`
+-- Table structure for table `muu_courses_tests_questions`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_tests_questions` (
@@ -545,10 +557,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_tests_questions` (
   PRIMARY KEY (`ID_Question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_courses_tests_questions`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_tutors`
+-- Table structure for table `muu_courses_tutors`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_tutors` (
@@ -561,10 +578,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_tutors` (
   PRIMARY KEY (`ID_Tutor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_courses_tutors`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_tutors_alerts`
+-- Table structure for table `muu_courses_tutors_alerts`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_tutors_alerts` (
@@ -579,10 +601,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_tutors_alerts` (
   PRIMARY KEY (`ID_Alert`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_courses_tutors_alerts`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_courses_tutors_messages`
+-- Table structure for table `muu_courses_tutors_messages`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_courses_tutors_messages` (
@@ -598,10 +625,15 @@ CREATE TABLE IF NOT EXISTS `muu_courses_tutors_messages` (
   PRIMARY KEY (`ID_Message`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_courses_tutors_messages`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_dislikes`
+-- Table structure for table `muu_dislikes`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_dislikes` (
@@ -611,19 +643,12 @@ CREATE TABLE IF NOT EXISTS `muu_dislikes` (
   `ID_Record` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `Start_Date` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID_Dislike`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Volcado de datos para la tabla `muu_dislikes`
---
-
-INSERT INTO `muu_dislikes` (`ID_Dislike`, `ID_User`, `ID_Application`, `ID_Record`, `Start_Date`) VALUES
-(1, 1, 10, 2, 1338350663);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_events`
+-- Table structure for table `muu_events`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_events` (
@@ -641,10 +666,15 @@ CREATE TABLE IF NOT EXISTS `muu_events` (
   PRIMARY KEY (`ID_Event`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_events`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_feedback`
+-- Table structure for table `muu_feedback`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_feedback` (
@@ -660,19 +690,10 @@ CREATE TABLE IF NOT EXISTS `muu_feedback` (
   `Text_Date` varchar(60) NOT NULL,
   `Situation` varchar(15) NOT NULL DEFAULT 'Inactive',
   PRIMARY KEY (`ID_Feedback`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- Volcado de datos para la tabla `muu_feedback`
---
-
-INSERT INTO `muu_feedback` (`ID_Feedback`, `Name`, `Email`, `Company`, `Phone`, `City`, `Subject`, `Message`, `Start_Date`, `Text_Date`, `Situation`) VALUES
-(1, 'Carlos Santana Roldán', 'carlos@milkzoft.com', 'MilkZoft', '1223423', 'Colima', 'Hola como estas', 'adasdasd', 1337647712, 'Miércoles, 13 de Junio de 2012', 'Deleted');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `muu_forums`
+-- Table structure for table `muu_forums`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_forums` (
@@ -689,10 +710,15 @@ CREATE TABLE IF NOT EXISTS `muu_forums` (
   PRIMARY KEY (`ID_Forum`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_forums`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_forums_posts`
+-- Table structure for table `muu_forums_posts`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_forums_posts` (
@@ -715,10 +741,15 @@ CREATE TABLE IF NOT EXISTS `muu_forums_posts` (
   KEY `ID_Forum` (`ID_Forum`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_forums_posts`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_gallery`
+-- Table structure for table `muu_gallery`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_gallery` (
@@ -739,10 +770,15 @@ CREATE TABLE IF NOT EXISTS `muu_gallery` (
   KEY `ID_User` (`ID_User`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_gallery`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_gallery_themes`
+-- Table structure for table `muu_gallery_themes`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_gallery_themes` (
@@ -753,10 +789,15 @@ CREATE TABLE IF NOT EXISTS `muu_gallery_themes` (
   PRIMARY KEY (`ID_Gallery_Theme`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_gallery_themes`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_inbox`
+-- Table structure for table `muu_inbox`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_inbox` (
@@ -769,10 +810,15 @@ CREATE TABLE IF NOT EXISTS `muu_inbox` (
   PRIMARY KEY (`ID_Inbox`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_inbox`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_jobs`
+-- Table structure for table `muu_jobs`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_jobs` (
@@ -797,10 +843,15 @@ CREATE TABLE IF NOT EXISTS `muu_jobs` (
   PRIMARY KEY (`ID_Job`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_jobs`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_learning`
+-- Table structure for table `muu_learning`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_learning` (
@@ -819,10 +870,15 @@ CREATE TABLE IF NOT EXISTS `muu_learning` (
   PRIMARY KEY (`ID_Course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_learning`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_likes`
+-- Table structure for table `muu_likes`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_likes` (
@@ -832,20 +888,13 @@ CREATE TABLE IF NOT EXISTS `muu_likes` (
   `ID_Record` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `Start_Date` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID_Like`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Volcado de datos para la tabla `muu_likes`
---
-
-INSERT INTO `muu_likes` (`ID_Like`, `ID_User`, `ID_Application`, `ID_Record`, `Start_Date`) VALUES
-(1, 1, 10, 3, 1338350239),
-(2, 1, 10, 4, 1338350263);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_logs`
+-- Table structure for table `muu_logs`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_logs` (
@@ -860,10 +909,15 @@ CREATE TABLE IF NOT EXISTS `muu_logs` (
   KEY `ID_User` (`ID_User`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_logs`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_multimedia`
+-- Table structure for table `muu_multimedia`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_multimedia` (
@@ -871,22 +925,22 @@ CREATE TABLE IF NOT EXISTS `muu_multimedia` (
   `ID_User` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `Filename` varchar(255) DEFAULT NULL,
   `URL` varchar(255) DEFAULT NULL,
-  `Original` varchar(255) DEFAULT NULL,
   `Medium` varchar(255) DEFAULT NULL,
   `Small` varchar(255) DEFAULT NULL,
-  `Display` varchar(255) DEFAULT NULL,
   `Thumbnail` varchar(255) DEFAULT NULL,
   `Category` varchar(20) NOT NULL DEFAULT 'Images',
   `Size` int(11) unsigned NOT NULL DEFAULT '0',
+  `Author` varchar(100) NOT NULL,
   `Start_Date` int(11) unsigned NOT NULL DEFAULT '0',
   `Downloads` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `Situation` varchar(20) NOT NULL DEFAULT 'Active',
   PRIMARY KEY (`ID_File`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_mural`
+-- Table structure for table `muu_mural`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_mural` (
@@ -900,10 +954,15 @@ CREATE TABLE IF NOT EXISTS `muu_mural` (
   KEY `ID_Post` (`ID_Post`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_mural`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_pages`
+-- Table structure for table `muu_pages`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_pages` (
@@ -921,22 +980,12 @@ CREATE TABLE IF NOT EXISTS `muu_pages` (
   `Situation` varchar(15) NOT NULL DEFAULT 'Active',
   PRIMARY KEY (`ID_Page`),
   KEY `ID_User` (`ID_User`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Volcado de datos para la tabla `muu_pages`
---
-
-INSERT INTO `muu_pages` (`ID_Page`, `ID_User`, `ID_Translation`, `Title`, `Slug`, `Content`, `Views`, `Language`, `Principal`, `Start_Date`, `Text_Date`, `Situation`) VALUES
-(1, 1, 0, 'Publicidad', 'publicidad', '<p>Publicidad</p>', 0, 'Spanish', 0, 1337745419, 'MiÃ©rcoles, 23 de Mayo de 2012', 'Active'),
-(2, 1, 0, 'Aviso Legal', 'aviso-legal', '<p>Aviso Legal</p>', 0, 'Spanish', 0, 1337746393, 'MiÃ©rcoles, 23 de Mayo de 2012', 'Active'),
-(3, 1, 0, 'Condiciones de uso', 'condiciones-de-uso', '<p>Condiciones de uso</p>', 0, 'Spanish', 0, 1337746409, 'MiÃ©rcoles, 23 de Mayo de 2012', 'Active'),
-(4, 1, 0, 'Acerca de Codejobs', 'acerca-de-codejobs', '<p>Acerca de Codejobs</p>', 0, 'Spanish', 0, 1337746606, 'MiÃ©rcoles, 23 de Mayo de 2012', 'Active');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_polls`
+-- Table structure for table `muu_polls`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_polls` (
@@ -951,10 +1000,15 @@ CREATE TABLE IF NOT EXISTS `muu_polls` (
   KEY `ID_User` (`ID_User`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_polls`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_polls_answers`
+-- Table structure for table `muu_polls_answers`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_polls_answers` (
@@ -966,10 +1020,15 @@ CREATE TABLE IF NOT EXISTS `muu_polls_answers` (
   KEY `ID_Poll` (`ID_Poll`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_polls_answers`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_polls_ips`
+-- Table structure for table `muu_polls_ips`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_polls_ips` (
@@ -980,10 +1039,15 @@ CREATE TABLE IF NOT EXISTS `muu_polls_ips` (
   KEY `ID_Poll` (`ID_Poll`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `muu_polls_ips`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_privileges`
+-- Table structure for table `muu_privileges`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_privileges` (
@@ -993,7 +1057,7 @@ CREATE TABLE IF NOT EXISTS `muu_privileges` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Volcado de datos para la tabla `muu_privileges`
+-- Dumping data for table `muu_privileges`
 --
 
 INSERT INTO `muu_privileges` (`ID_Privilege`, `Privilege`) VALUES
@@ -1005,7 +1069,7 @@ INSERT INTO `muu_privileges` (`ID_Privilege`, `Privilege`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_resumes`
+-- Table structure for table `muu_resumes`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_resumes` (
@@ -1028,10 +1092,15 @@ CREATE TABLE IF NOT EXISTS `muu_resumes` (
   PRIMARY KEY (`ID_Resume`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_resumes`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_re_comments_applications`
+-- Table structure for table `muu_re_comments_applications`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_re_comments_applications` (
@@ -1042,42 +1111,10 @@ CREATE TABLE IF NOT EXISTS `muu_re_comments_applications` (
   PRIMARY KEY (`ID_Comment2Application`),
   KEY `ID_Application` (`ID_Application`),
   KEY `ID_Comment` (`ID_Comment`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- Volcado de datos para la tabla `muu_re_comments_applications`
---
-
-INSERT INTO `muu_re_comments_applications` (`ID_Comment2Application`, `ID_Application`, `ID_Comment`, `ID_Record`) VALUES
-(1, 3, 1, 11),
-(2, 3, 2, 11),
-(3, 3, 3, 11),
-(4, 3, 4, 11),
-(5, 3, 5, 11),
-(6, 3, 6, 11),
-(7, 3, 7, 11),
-(8, 3, 8, 11),
-(9, 3, 9, 11),
-(10, 3, 10, 11),
-(11, 3, 11, 11),
-(12, 3, 12, 11),
-(13, 3, 13, 11),
-(14, 3, 14, 11),
-(15, 3, 15, 11),
-(16, 3, 16, 11),
-(17, 3, 17, 11),
-(18, 3, 18, 11),
-(19, 3, 19, 11),
-(20, 3, 20, 11),
-(21, 3, 21, 11),
-(22, 3, 22, 10),
-(23, 3, 23, 10),
-(24, 3, 24, 10);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `muu_re_companies_jobs`
+-- Table structure for table `muu_re_companies_jobs`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_re_companies_jobs` (
@@ -1085,10 +1122,15 @@ CREATE TABLE IF NOT EXISTS `muu_re_companies_jobs` (
   `ID_Job` int(11) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `muu_re_companies_jobs`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_re_courses_course_categories`
+-- Table structure for table `muu_re_courses_course_categories`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_re_courses_course_categories` (
@@ -1096,10 +1138,15 @@ CREATE TABLE IF NOT EXISTS `muu_re_courses_course_categories` (
   `ID_Course` mediumint(8) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `muu_re_courses_course_categories`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_re_courses_lesson_course`
+-- Table structure for table `muu_re_courses_lesson_course`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_re_courses_lesson_course` (
@@ -1107,10 +1154,15 @@ CREATE TABLE IF NOT EXISTS `muu_re_courses_lesson_course` (
   `ID_Lesson` mediumint(8) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `muu_re_courses_lesson_course`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_re_courses_tests_question_answer`
+-- Table structure for table `muu_re_courses_tests_question_answer`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_re_courses_tests_question_answer` (
@@ -1119,10 +1171,15 @@ CREATE TABLE IF NOT EXISTS `muu_re_courses_tests_question_answer` (
   `Correct` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `muu_re_courses_tests_question_answer`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_re_permissions_privileges`
+-- Table structure for table `muu_re_permissions_privileges`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_re_permissions_privileges` (
@@ -1137,7 +1194,7 @@ CREATE TABLE IF NOT EXISTS `muu_re_permissions_privileges` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `muu_re_permissions_privileges`
+-- Dumping data for table `muu_re_permissions_privileges`
 --
 
 INSERT INTO `muu_re_permissions_privileges` (`ID_Privilege`, `ID_Application`, `Adding`, `Deleting`, `Editing`, `Viewing`) VALUES
@@ -1208,12 +1265,13 @@ INSERT INTO `muu_re_permissions_privileges` (`ID_Privilege`, `ID_Application`, `
 (1, 18, 1, 1, 1, 1),
 (2, 18, 1, 1, 1, 1),
 (3, 18, 1, 0, 0, 1),
-(4, 18, 0, 0, 0, 0);
+(4, 18, 0, 0, 0, 0),
+(1, 19, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_re_privileges_users`
+-- Table structure for table `muu_re_privileges_users`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_re_privileges_users` (
@@ -1224,7 +1282,7 @@ CREATE TABLE IF NOT EXISTS `muu_re_privileges_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `muu_re_privileges_users`
+-- Dumping data for table `muu_re_privileges_users`
 --
 
 INSERT INTO `muu_re_privileges_users` (`ID_Privilege`, `ID_User`) VALUES
@@ -1233,7 +1291,7 @@ INSERT INTO `muu_re_privileges_users` (`ID_Privilege`, `ID_User`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_re_users_companies`
+-- Table structure for table `muu_re_users_companies`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_re_users_companies` (
@@ -1241,10 +1299,15 @@ CREATE TABLE IF NOT EXISTS `muu_re_users_companies` (
   `ID_Company` mediumint(8) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `muu_re_users_companies`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_re_users_events`
+-- Table structure for table `muu_re_users_events`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_re_users_events` (
@@ -1252,10 +1315,15 @@ CREATE TABLE IF NOT EXISTS `muu_re_users_events` (
   `ID_Event` mediumint(8) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `muu_re_users_events`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_support`
+-- Table structure for table `muu_support`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_support` (
@@ -1274,10 +1342,15 @@ CREATE TABLE IF NOT EXISTS `muu_support` (
   KEY `ID_User` (`ID_User`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_support`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_tokens`
+-- Table structure for table `muu_tokens`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_tokens` (
@@ -1290,19 +1363,13 @@ CREATE TABLE IF NOT EXISTS `muu_tokens` (
   `Situation` varchar(10) NOT NULL DEFAULT 'Active',
   PRIMARY KEY (`ID_Token`),
   KEY `ID_User` (`ID_User`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Volcado de datos para la tabla `muu_tokens`
---
-
-INSERT INTO `muu_tokens` (`ID_Token`, `ID_User`, `Token`, `Action`, `Start_Date`, `End_Date`, `Situation`) VALUES
-(1, 1, '756d9920d7eca6a6794c2c1e703ec7c84739e986', 'Recover', 1337732698, 1337819098, 'Inactive');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_tutorials`
+-- Table structure for table `muu_tutorials`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_tutorials` (
@@ -1320,10 +1387,15 @@ CREATE TABLE IF NOT EXISTS `muu_tutorials` (
   PRIMARY KEY (`ID_Tutorial`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_tutorials`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_users`
+-- Table structure for table `muu_users`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_users` (
@@ -1376,17 +1448,15 @@ CREATE TABLE IF NOT EXISTS `muu_users` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Volcado de datos para la tabla `muu_users`
+-- Dumping data for table `muu_users`
 --
 
 INSERT INTO `muu_users` (`ID_User`, `ID_Privilege`, `Username`, `Pwd`, `Email`, `Website`, `Avatar`, `Credits`, `Recommendation`, `Sign`, `Messages`, `Recieve_Messages`, `Topics`, `Replies`, `Comments`, `Posts`, `Bookmarks`, `Codes`, `Tutorials`, `Jobs`, `Subscribed`, `Start_Date`, `Code`, `CURP`, `RFC`, `Name`, `Age`, `Title`, `Address`, `Zip`, `Phone`, `Mobile`, `Gender`, `Relationship`, `Birthday`, `Country`, `District`, `City`, `Technologies`, `Twitter`, `Facebook`, `Linkedin`, `Google`, `Viadeo`, `Situation`) VALUES
-(1, 1, 'admin', 'b9223847e1566884893656e84798ff39cea2b8c4', 'carlos@milkzoft.com', '', 'default.png', 86, 60, '', 0, 1, 0, 0, 0, 12, 0, 0, 0, 0, 1, 1337647712, 'BC958D3C97', '', '', 'Carlos Santana Roldán', 18, '', '', '', '', '0', 'M', 'Single', '', '', '', '', '', '', '', '', '', '', 'Active'),
-(2, 4, 'tester', 'e53e0171e0fa33c534981aab0be760bfed2959f1', 'tester@milkzoft.com', '', 'default.png', 0, 50, '', 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1347453332, 'C3F4E6E123', '', '', '', 18, '', '', '', '', '', 'M', 'Single', '', '', '', '', '', '', '', '', '', '', 'Active');
-
+(1, 1, 'telecristy', 'b9223847e1566884893656e84798ff39cea2b8c4', 'carlos@milkzoft.com', '', 'default.png', 66, 26, '', 0, 1, 0, 0, 0, 5, 1, 0, 0, 0, 1, 1337647712, 'BC958D3C97', '', '', 'Carlos Santana Roldán', 18, '', '', '', '', '0', 'M', 'Single', '', '', '', '', '', '', '', '', '', '', 'Active');
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_users_online`
+-- Table structure for table `muu_users_online`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_users_online` (
@@ -1396,10 +1466,11 @@ CREATE TABLE IF NOT EXISTS `muu_users_online` (
   KEY `Date_Start` (`Start_Date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_users_online_anonymous`
+-- Table structure for table `muu_users_online_anonymous`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_users_online_anonymous` (
@@ -1410,16 +1481,14 @@ CREATE TABLE IF NOT EXISTS `muu_users_online_anonymous` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `muu_users_online_anonymous`
+-- Dumping data for table `muu_users_online_anonymous`
 --
 
-INSERT INTO `muu_users_online_anonymous` (`IP`, `Start_Date`) VALUES
-('::1', 1357757126);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_videos`
+-- Table structure for table `muu_videos`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_videos` (
@@ -1438,27 +1507,11 @@ CREATE TABLE IF NOT EXISTS `muu_videos` (
   `Situation` varchar(15) NOT NULL DEFAULT 'Active',
   PRIMARY KEY (`ID_Video`),
   KEY `ID_User` (`ID_User`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 
 --
--- Volcado de datos para la tabla `muu_videos`
---
-
-INSERT INTO `muu_videos` (`ID_Video`, `ID_User`, `ID_YouTube`, `Title`, `Slug`, `Description`, `URL`, `Server`, `Duration`, `Views`, `Start_Date`, `Text_Date`, `Situation`) VALUES
-(1, 1, 'jhP6vVc7Yts', 'Taller de CodeIgniter por www.codejobs.biz', 'taller-de-codeigniter-por-www-codejobs-biz', 'Taller de CodeIgniter por www.codejobs.biz', '', 'YouTube', '', 0, 1337743070, 'Wednesday, 23 de Mayo de 2012', 'Active'),
-(2, 1, 'JtUCr-m8BSo', 'Introducción al Responsive Design por www.codejobs.biz', 'introduccion-al-responsive-design-por-www-codejobs-biz', 'Introducción al Responsive Design por www.codejobs.biz', '', 'YouTube', '', 0, 1337743070, 'Wednesday, 23 de Mayo de 2012', 'Active'),
-(3, 1, 'SXHsN5GhdA0', 'Proyecto CANDI 3: Cómo crear un correo electro?nico en GMail', 'proyecto-candi-3-como-crear-un-correo-electro-nico-en-gmail', 'Explicación breve de cómo crear una cuenta de correo electrónico en GMail', '', 'YouTube', '', 0, 1337743070, 'Wednesday, 23 de Mayo de 2012', 'Active'),
-(4, 1, 't1BrjyAf3XE', 'Proyecto CANDI 2: Cómo crear una cuenta de correo electro?nico en Hotmail', 'proyecto-candi-2-como-crear-una-cuenta-de-correo-electro-nico-en-hotmail', 'Explicación breve de cómo crear una cuenta de correo electrónico en Hotmail', '', 'YouTube', '', 0, 1337743070, 'Wednesday, 23 de Mayo de 2012', 'Active'),
-(5, 1, 'djg8B0TPh60', 'Proyecto CANDI 1: Instalacioón de Ubuntu 12.04 [www.codejobs.biz]', 'proyecto-candi-1-instalacion-de-ubuntu-12-04-www-codejobs-biz', 'Explicación sencilla de cómo instalar Ubuntu 12.04 en tu computadora.', '', 'YouTube', '', 0, 1337743070, 'Wednesday, 23 de Mayo de 2012', 'Active'),
-(6, 1, 'JhHz0vyngN4', 'Presentación del Proyecto CANDI', 'presentacion-del-proyecto-candi', 'Presentación del Proyecto CANDI', '', 'YouTube', '', 0, 1337743070, 'Wednesday, 23 de Mayo de 2012', 'Active'),
-(7, 1, 'XBYw9eWNd7c', 'Taller de Introducción a ZanPHP por www.codejobs.biz', 'taller-de-introduccion-a-zanphp-por-www-codejobs-biz', 'Taller de Introduccio?n a ZanPHP por www.codejobs.biz', '', 'YouTube', '', 0, 1337743070, 'Wednesday, 23 de Mayo de 2012', 'Active'),
-(8, 1, '-Wb0XcYjIxU', 'Introducción a las Bases de Datos NoSQL', 'introducci-n-a-las-bases-de-datos-nosql', '', '', 'YouTube', '', 0, 1337743070, 'Wednesday, 23 de Mayo de 2012', 'Active'),
-(9, 1, 'nN9NQRSG7iU', 'Taller de Github por www.codejobs.biz', 'taller-de-github-por-www-codejobs-biz', 'Taller de Github por www.codejobs.biz', '', 'YouTube', '', 0, 1337743070, 'Wednesday, 23 de Mayo de 2012', 'Active');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `muu_works`
+-- Table structure for table `muu_works`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_works` (
@@ -1474,10 +1527,15 @@ CREATE TABLE IF NOT EXISTS `muu_works` (
   PRIMARY KEY (`ID_Work`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `muu_works`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muu_world`
+-- Table structure for table `muu_world`
 --
 
 CREATE TABLE IF NOT EXISTS `muu_world` (
@@ -1490,7 +1548,7 @@ CREATE TABLE IF NOT EXISTS `muu_world` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `muu_world`
+-- Dumping data for table `muu_world`
 --
 
 INSERT INTO `muu_world` (`Continent`, `Code`, `Country`, `District`, `Town`) VALUES
@@ -1862,98 +1920,92 @@ INSERT INTO `muu_world` (`Continent`, `Code`, `Country`, `District`, `Town`) VAL
 ('Oceania', 'NZL', 'New Zealand', 'Wellington', '');
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `muu_ads`
+-- Constraints for table `muu_ads`
 --
 ALTER TABLE `muu_ads`
   ADD CONSTRAINT `muu_ads_ibfk_1` FOREIGN KEY (`ID_User`) REFERENCES `muu_users` (`ID_User`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `muu_blog`
---
-ALTER TABLE `muu_blog`
-  ADD CONSTRAINT `muu_blog_ibfk_1` FOREIGN KEY (`ID_User`) REFERENCES `muu_users` (`ID_User`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `muu_codes_files`
+-- Constraints for table `muu_codes_files`
 --
 ALTER TABLE `muu_codes_files`
   ADD CONSTRAINT `muu_codes_files_ibfk_1` FOREIGN KEY (`ID_Code`) REFERENCES `muu_codes` (`ID_Code`),
   ADD CONSTRAINT `muu_codes_files_ibfk_2` FOREIGN KEY (`ID_Syntax`) REFERENCES `muu_codes_syntax` (`ID_Syntax`);
 
 --
--- Filtros para la tabla `muu_forums_posts`
+-- Constraints for table `muu_forums_posts`
 --
 ALTER TABLE `muu_forums_posts`
   ADD CONSTRAINT `muu_forums_posts_ibfk_1` FOREIGN KEY (`ID_User`) REFERENCES `muu_users` (`ID_User`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `muu_gallery`
+-- Constraints for table `muu_gallery`
 --
 ALTER TABLE `muu_gallery`
   ADD CONSTRAINT `muu_gallery_ibfk_1` FOREIGN KEY (`ID_User`) REFERENCES `muu_users` (`ID_User`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `muu_logs`
+-- Constraints for table `muu_logs`
 --
 ALTER TABLE `muu_logs`
   ADD CONSTRAINT `muu_logs_ibfk_1` FOREIGN KEY (`ID_User`) REFERENCES `muu_users` (`ID_User`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `muu_pages`
+-- Constraints for table `muu_pages`
 --
 ALTER TABLE `muu_pages`
   ADD CONSTRAINT `muu_pages_ibfk_1` FOREIGN KEY (`ID_User`) REFERENCES `muu_users` (`ID_User`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `muu_polls`
+-- Constraints for table `muu_polls`
 --
 ALTER TABLE `muu_polls`
   ADD CONSTRAINT `muu_polls_ibfk_1` FOREIGN KEY (`ID_User`) REFERENCES `muu_users` (`ID_User`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `muu_polls_answers`
+-- Constraints for table `muu_polls_answers`
 --
 ALTER TABLE `muu_polls_answers`
   ADD CONSTRAINT `muu_polls_answers_ibfk_1` FOREIGN KEY (`ID_Poll`) REFERENCES `muu_polls` (`ID_Poll`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `muu_polls_ips`
+-- Constraints for table `muu_polls_ips`
 --
 ALTER TABLE `muu_polls_ips`
   ADD CONSTRAINT `muu_polls_ips_ibfk_1` FOREIGN KEY (`ID_Poll`) REFERENCES `muu_polls` (`ID_Poll`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `muu_re_permissions_privileges`
+-- Constraints for table `muu_re_permissions_privileges`
 --
 ALTER TABLE `muu_re_permissions_privileges`
   ADD CONSTRAINT `muu_re_permissions_privileges_ibfk_1` FOREIGN KEY (`ID_Privilege`) REFERENCES `muu_privileges` (`ID_Privilege`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `muu_re_permissions_privileges_ibfk_2` FOREIGN KEY (`ID_Application`) REFERENCES `muu_applications` (`ID_Application`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `muu_re_privileges_users`
+-- Constraints for table `muu_re_privileges_users`
 --
 ALTER TABLE `muu_re_privileges_users`
   ADD CONSTRAINT `muu_re_privileges_users_ibfk_1` FOREIGN KEY (`ID_Privilege`) REFERENCES `muu_privileges` (`ID_Privilege`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `muu_re_privileges_users_ibfk_2` FOREIGN KEY (`ID_User`) REFERENCES `muu_users` (`ID_User`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `muu_support`
+-- Constraints for table `muu_support`
 --
 ALTER TABLE `muu_support`
   ADD CONSTRAINT `muu_support_ibfk_1` FOREIGN KEY (`ID_User`) REFERENCES `muu_users` (`ID_User`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `muu_tokens`
+-- Constraints for table `muu_tokens`
 --
 ALTER TABLE `muu_tokens`
   ADD CONSTRAINT `muu_tokens_ibfk_1` FOREIGN KEY (`ID_User`) REFERENCES `muu_users` (`ID_User`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `muu_videos`
+-- Constraints for table `muu_videos`
 --
 ALTER TABLE `muu_videos`
   ADD CONSTRAINT `muu_videos_ibfk_1` FOREIGN KEY (`ID_User`) REFERENCES `muu_users` (`ID_User`) ON DELETE CASCADE ON UPDATE CASCADE;
