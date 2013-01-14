@@ -78,10 +78,12 @@
         <?php 
             echo $this->getJs(); 
 
+            echo display('<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>', 4);
+
             display('<script type="text/javascript">
-                        var sc_project = 7655788; 
+                        var sc_project = 8621664; 
                         var sc_invisible = 1; 
-                        var sc_security = "f167f55b"; 
+                        var sc_security = "3b97de20"; 
                     </script>
                     <script type="text/javascript" src="http://www.statcounter.com/counter/counter.js"></script>', 4);
         ?>
