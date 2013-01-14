@@ -182,7 +182,7 @@
 						<li><a href="<?php echo path("blog/tag/". slug(__("Appetizers"))); ?>"><?php echo __("Appetizers"); ?></a></li>
 						<li><a href="<?php echo path("blog/tag/". slug(__("Poultry"))); ?>"><?php echo __("Poultry"); ?></a></li>
 						<li><a href="<?php echo path("blog/tag/". slug(__("Meat"))); ?>"><?php echo __("Meat"); ?></a></li>
-						<li><a href="<?php echo path("blog/tag/". slug(__("Salads"))); ?>" target="_blank"><?php echo __("Salads"); ?></a></li>
+						<li><a href="<?php echo path("blog/tag/". slug(__("Salads"))); ?>"><?php echo __("Salads"); ?></a></li>
 						<li><a href="<?php echo path("blog/tag/". slug(__("Seafood"))); ?>"><?php echo __("Seafood"); ?></a></li>
 						<li><a href="<?php echo path("blog/tag/". slug(__("Desserts"))); ?>"><?php echo __("Desserts"); ?></a></li>							
 						<li><a href="<?php echo path("blog/tag/". slug(__("Sushi"))); ?>"><?php echo __("Sushi"); ?></a></li>
