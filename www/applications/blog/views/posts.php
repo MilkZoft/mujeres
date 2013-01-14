@@ -42,9 +42,10 @@ if(is_array($posts)) {
 			<div class="clear"></div>
 					
 			<div class="post-content">	
-				<?php 
-					echo display(social($URL, $post["Title"], FALSE, TRUE, FALSE, FALSE), 4);
-					echo br();
+				<div class="social" style="float:left; margin-bottom: 30px;">
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $URL; ?>" data-text="<?php echo $post["Content"]; ?>" data-via="<?php echo _via; ?>" data-lang="<?php echo _get("webLang"); ?>">Tweet</a>
+				</div>
+				<?php 								
 					echo showContent(pagebreak($post["Content"], $URL), TRUE); 
 				?>	
 
