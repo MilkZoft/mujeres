@@ -36,7 +36,7 @@
 	<?php 
 		echo $this->getCSS(); 
 	 	
-	 	#echo $this->js("jquery", NULL, TRUE);   
+	 	echo $this->js("jquery", NULL, TRUE);   
 	?>
 
 	<script type="text/javascript" src="<?php echo $this->themePath; ?>/js/porlets.js"></script>
@@ -49,8 +49,7 @@
 
 	<link href="http://fonts.googleapis.com/css?family=ABeeZee" rel="stylesheet" type="text/css">
 
-	<link rel="stylesheet" href="<?php echo $this->themePath; ?>/js/flexslider/flexslider.css" type="text/css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="<?php echo $this->themePath; ?>/js/flexslider/flexslider.css" type="text/css">	
 	<script src="<?php echo $this->themePath; ?>/js/flexslider/jquery.flexslider.min.js"></script>
 
 	<script type="text/javascript">
@@ -209,6 +208,6 @@
 			</header>
 
   			<?php 
-  				$this->execute("Blog_Controller", "mural");
+  				//$this->execute("Blog_Controller", "mural");
   			?>
 		  		
