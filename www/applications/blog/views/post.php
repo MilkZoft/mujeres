@@ -25,26 +25,28 @@
 			<div class="clear"></div>
 				
 			<div class="post-content">
-				<?php
-					echo display(social($URL, $post["Title"], FALSE), 4); 
+				<div class="social" style="float: left; margin-top: 5px; margin-bottom: 10px;">
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $URL; ?>" data-text="<?php echo $post["Content"]; ?>" data-via="mujeresen" data-lang="<?php echo _get("webLang"); ?>">Tweet</a>
+				</div>
+
+				<div class="clear"></div>
+				<?php					
 					echo showContent($post["Content"], $URL); 
 				?>
 
 				<br /><br />
 
 				<?php 
-					echo display('<p>
-									<script type="text/javascript">
-										google_ad_client = "ca-pub-4006994369722584";
-										/* CodeJobs.biz */
-										google_ad_slot = "1672839256";
-										google_ad_width = 728;
-										google_ad_height = 90;
-										</script>
-										<script type="text/javascript"
-										src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-									</script>
-								</p>', 4);
+					echo display('<script type="text/javascript">
+							google_ad_client = "ca-pub-4006994369722584";
+							/* mujeresen.la */
+							google_ad_slot = "9139966704";
+							google_ad_width = 728;
+							google_ad_height = 90;
+							</script>
+							<script type="text/javascript"
+							src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+							</script>', 4);
 				?>
 			</div>
 		</div>
