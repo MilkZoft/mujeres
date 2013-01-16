@@ -3,7 +3,9 @@
 		die("Error: You don't have permission to access here...");
 	}
 
-	if(segment(0) === "casa") {
+	if(segment(0) === "cocina") {
+		$logo = "cocina";
+	} elseif(segment(0) === "casa") {
 		$logo = "casa";
 	} elseif(segment(0) === "belleza") {
 		$logo = "belleza";
