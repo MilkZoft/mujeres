@@ -212,7 +212,7 @@
   			?>
 
   			<div class="ads">
-  				<?phpinfo()
+  				<?php
   				echo display('<p><script type="text/javascript">
 							google_ad_client = "ca-pub-4006994369722584";
 							/* mujeresen.la */
