@@ -12,7 +12,7 @@ if(is_array($posts)) {
 			$post = array_shift($post);
 		}
 			
-		$URL  = path("blog/". $post["Year"] ."/". $post["Month"] ."/". $post["Day"] ."/". $post["Slug"]);	
+		$URL  = path("blog/". $post["Year"] ."/". $post["Month"] ."/". $post["Day"] ."/". $post["Slug"], FALSE, TRUE, TRUE);	
 		
 		$in = ($post["Tags"] !== "") ? __("in") : NULL;	
 

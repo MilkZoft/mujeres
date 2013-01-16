@@ -1,5 +1,5 @@
 <?php 			
-	$URL = path("blog/". $post["Year"] ."/". $post["Month"] ."/". $post["Day"] ."/". $post["Slug"]);		
+	$URL = path("blog/". $post["Year"] ."/". $post["Month"] ."/". $post["Day"] ."/". $post["Slug"], FALSE, TRUE, TRUE);		
 	$in  = ($post["Tags"] !== "") ? __("in") : NULL;
 ?>
 		<div class="post">
