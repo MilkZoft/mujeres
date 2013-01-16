@@ -45,6 +45,7 @@ $ZP["translation"] = "normal";
 /**
  * Constants
  */
+define("_anchor", "#top");
 define("_sh", "/");
 define("_corePath", "zan");
 define("_index", "index.php");
