@@ -412,7 +412,8 @@ class Blog_Controller extends ZP_Load {
 			}
 			
 			$count = $this->Blog_Model->count("tag");
-			$URL   = path("blog/tag/". segment(2, isLang()) ."/page/");
+			$tag = segment(2, isLang()) === "" ? segment(0) : segment(2, isLang());
+			$URL   = path("blog/tag/". $tag ."/page/");
 		} elseif($type === "author") {	
 			if(segment(1, isLang()) === "author" and segment(2, isLang()) and segment(3, isLang()) === "page" and segment(4, isLang()) > 0) {
 				$start = (segment(4, isLang()) * _maxLimit) - _maxLimit;
