@@ -22,11 +22,11 @@ $routes = array(
 		"params"	  => array("belleza")
 	),
 	2 => array(
-		"pattern"	  => "/^hogar/",
+		"pattern"	  => "/^casa/",
 		"application" => "blog",
 		"controller"  => "blog",
 		"method"	  => "tag",
-		"params"	  => array("hogar")
+		"params"	  => array("casa")
 	),
 	3 => array(
 		"pattern"	  => "/^familia/",
