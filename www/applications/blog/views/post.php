@@ -37,7 +37,7 @@
 				<br /><br />
 
 				<?php 
-					echo display('<script type="text/javascript">
+					echo display('<p><script type="text/javascript">
 							google_ad_client = "ca-pub-4006994369722584";
 							/* mujeresen.la */
 							google_ad_slot = "9139966704";
@@ -46,7 +46,7 @@
 							</script>
 							<script type="text/javascript"
 							src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-							</script>', 4);
+							</script></p>', 4);
 				?>
 			</div>
 		</div>

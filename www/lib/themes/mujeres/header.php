@@ -210,4 +210,19 @@
   			<?php 
   				$this->execute("Blog_Controller", "mural");
   			?>
+
+  			<div class="ads">
+  				<?phpinfo()
+  				echo display('<p><script type="text/javascript">
+							google_ad_client = "ca-pub-4006994369722584";
+							/* mujeresen.la */
+							google_ad_slot = "9139966704";
+							google_ad_width = 728;
+							google_ad_height = 90;
+							</script>
+							<script type="text/javascript"
+							src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+							</script></p>', 4);
+  				?>
+  			</div>
 		  		
