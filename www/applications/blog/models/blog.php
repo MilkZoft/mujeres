@@ -310,7 +310,7 @@ class Blog_Model extends ZP_Load {
 		} elseif($type === "comments") {
 			$count = 0;
 		} elseif($type === "tag") {
-			$data = $this->getByTag(segment(2, isLang()));
+			$data = $this->getByTag((strlen(segment(2, isLang())) > 1) ? segment(2, isLang()) : segment(0));
 			
 			$count = count($data);
 		} elseif($type === "author") {
