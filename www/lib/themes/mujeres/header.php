@@ -44,11 +44,11 @@
 					<li><a href="'.  path("blog/tag/". slug(__("Skin"))) .'" title="'.  __("Skin") .'">'.  __("Skin") .'</a></li>';
 	} elseif(segment(0) === "sexualidad") {
 		$logo = "sexualidad";
-		$menuList = '<li><a href="'.  path("blog/tag/". slug(__("Exercise"))) .'" title="'.  __("Exercise") .'">'.  __("Exercise") .'</a></li>
-					<li><a href="'.  path("blog/tag/". slug(__("Diets"))) .'" title="'.  __("Diets") .'">'.  __("Diets") .'</a></li>
-					<li><a href="'.  path("blog/tag/". slug(__("Allergies"))) .'" title="'.  __("Allergies") .'">'.  __("Allergies") .'</a></li>
-					<li><a href="'.  path("blog/tag/". slug(__("Infections"))) .'" title="'.  __("Infections") .'">'.  __("Infections") .'</a></li>
-					<li><a href="'.  path("blog/tag/". slug(__("Skin"))) .'" title="'.  __("Skin") .'">'.  __("Skin") .'</a></li>';
+		$menuList = '<li><a href="'. path("blog/tag/". slug(__("Contraceptives"))) .'" title="'. __("Contraceptives") .'">'. __("Contraceptives") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Couple"))) .'" title="'. __("Couple") .'">'. __("Couple") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Sex and Relationships"))) .'" title="'. __("Sex and Relationships") .'">'. __("Sex") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Sexually Transmitted Diseases"))) .'" title="'. __("Sexually Transmitted Diseases") .'">'. __("Diseases") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Kamasutra"))) .'" title="'. __("Kamasutra") .'">'. __("Kamasutra") .'</a></li>';
 	} else {
 		$logo = "logo";
 		$menuList = '<li><a href="'. path("blog/tag/". slug(__("Appetizers"))) .'">'. __("Appetizers") .'</a></li>
