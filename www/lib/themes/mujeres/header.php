@@ -5,20 +5,61 @@
 
 	if(segment(0) === "cocina") {
 		$logo = "cocina";
+		$menuList = '<li><a href="'. path("blog/tag/". slug(__("Appetizers"))) .'">'. __("Appetizers") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Poultry"))) .'">'. __("Poultry") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Meat"))) .'">'. __("Meat") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Salads"))) .'">'. __("Salads") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Seafood"))) .'">'. __("Seafood") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Desserts"))) .'">'. __("Desserts") .'</a></li>							
+					<li><a href="'. path("blog/tag/". slug(__("Sushi"))) .'">'. __("Sushi") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Vegetables"))) .'">'. __("Vegetables") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Others"))) .'">'. __("Others") .'</a></li>';
 	} elseif(segment(0) === "casa") {
 		$logo = "casa";
+		$menuList = '<li><a href="'. path("blog/tag/". slug(__("Garden"))) .'" title="'. __("Garden") .'">'. __("Garden") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Decoration"))) .'" title="'. __("Decoration") .'">'. __("Decoration") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Saving"))) .'" title="'. __("Saving") .'">'. __("Saving") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Prevention of accidents"))) .'" title="'. __("Prevention of accidents") .'">'. __("Accidents") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Appliances"))) .'" title="'. __("Appliances") .'">'. __("Appliances") .'</a></li>';
 	} elseif(segment(0) === "belleza") {
 		$logo = "belleza";
-	} elseif(segment(0) === "hogar") {
-		$logo = "hogar";
+		$menuList = '<li><a href="'. path("blog/tag/". slug(__("Fashion"))) .'" title="'. __("Fashion") .'">'. __("Fashion") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Makeup"))) .'" title="'. __("Makeup") .'">'. __("Makeup") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Clothing"))) .'" title="'. __("Clothing") .'">'. __("Clothing") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Shoes"))) .'" title="'. __("Shoes") .'">'. __("Shoes") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Accessories"))) .'" title="'. __("Accessories") .'">'. __("Accessories") .'</a></li>';
 	} elseif(segment(0) === "familia") {
 		$logo = "familia";
+		$menuList = '<li><a href="'. path("blog/tag/". slug(__("Maternity"))) .'" title="'. __("Maternity") .'">'. __("Maternity") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Children"))) .'" title="'. __("Children") .'">'. __("Children") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Teens"))) .'" title="'. __("Teens") .'">'. __("Teens") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Marriage"))) .'" title="'. __("Marriage") .'">'. __("Marriage") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Education"))) .'" title="'. __("Education") .'">'. __("Education") .'</a></li>';
 	} elseif(segment(0) === "salud") {
 		$logo = "salud";
+		$menuList = '<li><a href="'. path("blog/tag/". slug(__("Maternity"))) .'" title="'. __("Maternity") .'">'. __("Maternity") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Children"))) .'" title="'. __("Children") .'">'. __("Children") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Teens"))) .'" title="'. __("Teens") .'">'. __("Teens") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Marriage"))) .'" title="'. __("Marriage") .'">'. __("Marriage") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Education"))) .'" title="'. __("Education") .'">'. __("Education") .'</a></li>';
 	} elseif(segment(0) === "sexualidad") {
 		$logo = "sexualidad";
+		$menuList = '<li><a href="'.  path("blog/tag/". slug(__("Exercise"))) .'" title="'.  __("Exercise") .'">'.  __("Exercise") .'</a></li>
+					<li><a href="'.  path("blog/tag/". slug(__("Diets"))) .'" title="'.  __("Diets") .'">'.  __("Diets") .'</a></li>
+					<li><a href="'.  path("blog/tag/". slug(__("Allergies"))) .'" title="'.  __("Allergies") .'">'.  __("Allergies") .'</a></li>
+					<li><a href="'.  path("blog/tag/". slug(__("Infections"))) .'" title="'.  __("Infections") .'">'.  __("Infections") .'</a></li>
+					<li><a href="'.  path("blog/tag/". slug(__("Skin"))) .'" title="'.  __("Skin") .'">'.  __("Skin") .'</a></li>';
 	} else {
 		$logo = "logo";
+		$menuList = '<li><a href="'. path("blog/tag/". slug(__("Appetizers"))) .'">'. __("Appetizers") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Poultry"))) .'">'. __("Poultry") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Meat"))) .'">'. __("Meat") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Salads"))) .'">'. __("Salads") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Seafood"))) .'">'. __("Seafood") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Desserts"))) .'">'. __("Desserts") .'</a></li>							
+					<li><a href="'. path("blog/tag/". slug(__("Sushi"))) .'">'. __("Sushi") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Vegetables"))) .'">'. __("Vegetables") .'</a></li>
+					<li><a href="'. path("blog/tag/". slug(__("Others"))) .'">'. __("Others") .'</a></li>';
 	}
 ?>
 <!DOCTYPE html>
@@ -181,15 +222,7 @@
 			
 				<nav class="menu">
 					<ul>
-						<li><a href="<?php echo path("blog/tag/". slug(__("Appetizers"))); ?>"><?php echo __("Appetizers"); ?></a></li>
-						<li><a href="<?php echo path("blog/tag/". slug(__("Poultry"))); ?>"><?php echo __("Poultry"); ?></a></li>
-						<li><a href="<?php echo path("blog/tag/". slug(__("Meat"))); ?>"><?php echo __("Meat"); ?></a></li>
-						<li><a href="<?php echo path("blog/tag/". slug(__("Salads"))); ?>"><?php echo __("Salads"); ?></a></li>
-						<li><a href="<?php echo path("blog/tag/". slug(__("Seafood"))); ?>"><?php echo __("Seafood"); ?></a></li>
-						<li><a href="<?php echo path("blog/tag/". slug(__("Desserts"))); ?>"><?php echo __("Desserts"); ?></a></li>							
-						<li><a href="<?php echo path("blog/tag/". slug(__("Sushi"))); ?>"><?php echo __("Sushi"); ?></a></li>
-						<li><a href="<?php echo path("blog/tag/". slug(__("Vegetables"))); ?>"><?php echo __("Vegetables"); ?></a></li>
-						<li><a href="<?php echo path("blog/tag/". slug(__("Others"))); ?>"><?php echo __("Others"); ?></a></li>	
+						<?php echo $menuList; ?>
 						<script type="text/javascript">
 							if(screen.width > 800) {
 								var social = '<li class="social"><a href="#" title="Facebook"><img class="down noborder" src="<?php echo $this->themePath; ?>/images/social/facebook.png" alt="Facebook" /></a></li>';
