@@ -37,11 +37,11 @@
 					<li><a href="'. path("blog/tag/". slug(__("Education"))) .'" title="'. __("Education") .'">'. __("Education") .'</a></li>';
 	} elseif(segment(0) === "salud") {
 		$logo = "salud";
-		$menuList = '<li><a href="'. path("blog/tag/". slug(__("Maternity"))) .'" title="'. __("Maternity") .'">'. __("Maternity") .'</a></li>
-					<li><a href="'. path("blog/tag/". slug(__("Children"))) .'" title="'. __("Children") .'">'. __("Children") .'</a></li>
-					<li><a href="'. path("blog/tag/". slug(__("Teens"))) .'" title="'. __("Teens") .'">'. __("Teens") .'</a></li>
-					<li><a href="'. path("blog/tag/". slug(__("Marriage"))) .'" title="'. __("Marriage") .'">'. __("Marriage") .'</a></li>
-					<li><a href="'. path("blog/tag/". slug(__("Education"))) .'" title="'. __("Education") .'">'. __("Education") .'</a></li>';
+		$menuList = '<li><a href="'.  path("blog/tag/". slug(__("Exercise"))) .'" title="'.  __("Exercise") .'">'.  __("Exercise") .'</a></li>
+					<li><a href="'.  path("blog/tag/". slug(__("Diets"))) .'" title="'.  __("Diets") .'">'.  __("Diets") .'</a></li>
+					<li><a href="'.  path("blog/tag/". slug(__("Allergies"))) .'" title="'.  __("Allergies") .'">'.  __("Allergies") .'</a></li>
+					<li><a href="'.  path("blog/tag/". slug(__("Infections"))) .'" title="'.  __("Infections") .'">'.  __("Infections") .'</a></li>
+					<li><a href="'.  path("blog/tag/". slug(__("Skin"))) .'" title="'.  __("Skin") .'">'.  __("Skin") .'</a></li>';
 	} elseif(segment(0) === "sexualidad") {
 		$logo = "sexualidad";
 		$menuList = '<li><a href="'.  path("blog/tag/". slug(__("Exercise"))) .'" title="'.  __("Exercise") .'">'.  __("Exercise") .'</a></li>
