@@ -268,6 +268,15 @@ input:required:valid
 	margin: 0px;
 }
 
+.footer-copyright p a {
+	color: #333;
+	text-decoration: none;
+}
+
+.footer-copyright p a:hover {
+	color: #2080b9;
+}
+
 .footer-menu 
 {
 	float: left;
@@ -466,7 +475,733 @@ input:required:valid
 
 /* Mediaqueries */
 
-@media (max-width: 400px), (max-device-width: 400px) {
+/* iPad portrait 768 x 1024 */
+@media (max-width: 768px), (max-device-width: 768px) {
+	header nav ul 
+	{
+		margin-left: 1px;
+		width: 745px;
+	}
+
+	header nav ul li 
+	{
+		display: inline;
+	}
+
+	header nav ul li a 
+	{
+		font-size: 1em;
+	}
+
+	#topbar nav ul 
+	{
+		font-size: 1em;
+		width: 745px;
+		margin-left: 15px;
+	}
+
+	#top-box, #top-box-login, #top-box-profile, #top-box-register 
+	{
+		display: none;
+	}
+
+	#topbar-wrapper 
+	{
+		width: 745px;
+	}
+
+	.flexslider 
+	{
+		max-width: 745px;
+	}
+
+	.flexslider img 
+	{
+		max-width: 745px;
+	}
+
+	.mural-title
+	{
+		max-width: 745px;
+		height: 40px ! important;
+		font-size: 1.3em;
+		margin-top: 10px ! important;
+		line-height: 40px ! important;
+	}
+
+	.footer-copyright 
+	{
+		font-size: 0.8em;	
+		height: 40px;
+	}
+
+	.footer-menu 
+	{
+		float: left;
+		margin-left: 40px;
+		margin-right: 40px;
+		font-size: 1.2em !important;
+	}
+
+	.footer-wrapper 
+	{	
+		width: 745px;
+	}
+
+	.footer-wrapper h4 
+	{
+		font-size: 1.2em;
+	}
+
+	.footer-wrapper ul 
+	{
+		margin-left: 30px;
+	}
+
+	.logo 
+	{
+		margin-left: 20px;
+		max-width: 740px;
+	}
+
+	.post 
+	{	
+		margin-left: 5px;
+		width: 745px;
+	}
+
+	.post-title a
+	{
+		font-size: 25px;
+	}
+
+	.post-left
+	{
+		max-width: 630px;
+	}
+
+	.post-content 
+	{
+		font-size: 22px;
+		margin-bottom: 15px;
+		max-width: 745px;
+		text-align: justify;
+	}
+
+	.post-content img 
+	{
+		margin-left: 2px;
+		max-width: 350px;
+	}
+
+	.post-left 
+	{
+		font-size: 1em;
+	}
+
+	.post-right 
+	{
+		float: left;
+		font-size: 1em;
+	}
+
+	.post-title 
+	{
+		font-size: 1.2em;
+		font-weight: bold;
+		line-height: 30px;
+		text-shadow: 2px 2px 2px #CCC;
+	}
+
+	.social 
+	{
+		float: none;
+	}
+}
+
+/* Android (Samsung Galaxy) landscape 685 by 380 (equivalent desktop resolution) */
+@media (max-width: 680px), (max-device-width: 685px) {
+	header nav ul 
+	{
+		margin-left: 1px;
+		width: 650px;
+	}
+
+	header nav ul li 
+	{
+		display: inline;
+	}
+
+	header nav ul li a 
+	{
+		font-size: 1em;
+	}
+
+	#topbar nav ul 
+	{
+		font-size: 1em;
+		width: 650px;
+		margin-left: 15px;
+	}
+
+	#top-box, #top-box-login, #top-box-profile, #top-box-register 
+	{
+		display: none;
+	}
+
+	#topbar-wrapper 
+	{
+		width: 650px;
+	}
+
+	.flexslider 
+	{
+		max-width: 665px;
+	}
+
+	.flexslider img 
+	{
+		max-width: 665px;
+	}
+
+	.mural-title
+	{
+		max-width: 665px;
+		height: 40px ! important;
+		font-size: 1.3em;
+		margin-top: 15px ! important;
+		line-height: 40px ! important;
+	}
+
+	.footer-copyright 
+	{
+		font-size: 0.75em;	
+		height: 40px;
+	}
+
+	.footer-menu 
+	{
+		float: left;
+		margin-left: 34px;
+		margin-right: 34px;
+		font-size: 1em !important;
+	}
+
+	.footer-wrapper 
+	{	
+		width: 640px;
+	}
+
+	.footer-wrapper h4 
+	{
+		font-size: 1.2em;
+	}
+
+	.footer-wrapper ul 
+	{
+		margin-left: 30px;
+	}
+
+	.logo 
+	{
+		margin-left: 20px;
+		max-width: 650px;
+	}
+
+	.post 
+	{	
+		margin-left: 5px;
+		width: 645px;
+	}
+
+	.post-title a
+	{
+		font-size: 25px;
+	}
+
+	.post-left
+	{
+		max-width: 630px;
+	}
+
+	.post-content 
+	{
+		font-size: 22px;
+		margin-bottom: 15px;
+		max-width: 645px;
+		text-align: justify;
+	}
+
+	.post-content img 
+	{
+		margin-left: 2px;
+		max-width: 350px;
+	}
+
+	.post-left 
+	{
+		font-size: 1em;
+	}
+
+	.post-right 
+	{
+		float: left;
+		font-size: 1em;
+	}
+
+	.post-title 
+	{
+		font-size: 1.2em;
+		font-weight: bold;
+		line-height: 30px;
+		text-shadow: 2px 2px 2px #CCC;
+	}
+
+	.social 
+	{
+		float: none;
+	}
+}
+
+/* Kindle portrait 600 x 1024 */
+
+@media (max-width: 600px), (max-device-width: 600px) {
+
+	header nav ul 
+	{
+		margin-left: 1px;
+		width: 580px;
+	}
+
+	header nav ul li 
+	{
+		display: inline;
+	}
+
+	header nav ul li a 
+	{
+		font-size: 1em;
+	}
+
+	#topbar nav ul 
+	{
+		font-size: 1em;
+		width: 580px;
+		margin-left: 15px;
+	}
+
+	#top-box, #top-box-login, #top-box-profile, #top-box-register 
+	{
+		display: none;
+	}
+
+	#topbar-wrapper 
+	{
+		width: 580px;
+	}
+
+	.flexslider 
+	{
+		max-width: 580px;
+	}
+
+	.flexslider img 
+	{
+		max-width: 580px;
+	}
+
+	.mural-title
+	{
+		max-width: 580px;
+		height: 40px ! important;
+		font-size: 1.3em;
+		margin-top: 15px ! important;
+		line-height: 40px ! important;
+	}
+
+	.footer-copyright 
+	{
+		font-size: 0.75em;	
+		height: 40px;
+	}
+
+	.footer-menu 
+	{
+		float: left;
+		margin-left: 35px;
+		margin-right: 35px;
+		font-size: 0.9em;
+	}
+
+	.footer-wrapper 
+	{	
+		width: 580px;
+	}
+
+	.footer-wrapper h4 
+	{
+		font-size: 1.2em;
+	}
+
+	.footer-wrapper ul 
+	{
+		margin-left: 30px;
+	}
+
+	.logo 
+	{
+		margin-left: 20px;
+		max-width: 580px;
+	}
+
+	.post 
+	{	
+		margin-left: 5px;
+		width: 580px;
+	}
+
+	.post-title a
+	{
+		font-size: 25px;
+	}
+
+	.post-left
+	{
+		max-width: 580px;
+	}
+
+	.post-content 
+	{
+		font-size: 22px;
+		margin-bottom: 15px;
+		max-width: 580px;
+		text-align: justify;
+	}
+
+	.post-content img 
+	{
+		margin-left: 2px;
+		max-width: 350px;
+	}
+
+	.post-left 
+	{
+		font-size: 1em;
+	}
+
+	.post-right 
+	{
+		float: left;
+		font-size: 1em;
+	}
+
+	.post-title 
+	{
+		font-size: 1.2em;
+		font-weight: bold;
+		line-height: 30px;
+		text-shadow: 2px 2px 2px #CCC;
+	}
+
+	.social 
+	{
+		float: none;
+	}
+}
+
+/* iPhone 5 landscape 568 x 320 */
+
+@media (max-width: 568px), (max-device-width: 568px) {
+
+	header nav ul 
+	{
+		margin-left: 1px;
+		width: 550px;
+	}
+
+	header nav ul li 
+	{
+		display: inline;
+	}
+
+	header nav ul li a 
+	{
+		font-size: 1em;
+	}
+
+	#topbar nav ul 
+	{
+		font-size: 1em;
+		width: 550px;
+		margin-left: 15px;
+	}
+
+	#top-box, #top-box-login, #top-box-profile, #top-box-register 
+	{
+		display: none;
+	}
+
+	#topbar-wrapper 
+	{
+		width: 550px;
+	}
+
+	.flexslider 
+	{
+		max-width: 550px;
+	}
+
+	.flexslider img 
+	{
+		max-width: 550px;
+	}
+
+	.mural-title
+	{
+		max-width: 550px;
+		height: 40px ! important;
+		font-size: 1.3em;
+		margin-top: 15px ! important;
+		line-height: 40px ! important;
+	}
+
+	.footer-copyright 
+	{
+		font-size: 0.75em;	
+		height: 40px;
+	}
+
+	.footer-menu 
+	{
+		float: left;
+		margin-left: 20px;
+		margin-right: 20px;
+		font-size: 0.9em;
+	}
+
+	.footer-wrapper 
+	{	
+		width: 550px;
+	}
+
+	.footer-wrapper h4 
+	{
+		font-size: 1.2em;
+	}
+
+	.footer-wrapper ul 
+	{
+		margin-left: 30px;
+	}
+
+	.logo 
+	{
+		margin-left: 20px;
+		max-width: 550px;
+	}
+
+	.post 
+	{	
+		margin-left: 5px;
+		width: 550px;
+	}
+
+	.post-title a
+	{
+		font-size: 25px;
+	}
+
+	.post-left
+	{
+		max-width: 530px;
+	}
+
+	.post-content 
+	{
+		font-size: 22px;
+		margin-bottom: 15px;
+		max-width: 540px;
+		text-align: justify;
+	}
+
+	.post-content img 
+	{
+		margin-left: 2px;
+		max-width: 350px;
+	}
+
+	.post-left 
+	{
+		font-size: 1em;
+	}
+
+	.post-right 
+	{
+		float: left;
+		font-size: 1em;
+	}
+
+	.post-title 
+	{
+		font-size: 1.2em;
+		font-weight: bold;
+		line-height: 30px;
+		text-shadow: 2px 2px 2px #CCC;
+	}
+
+	.social 
+	{
+		float: none;
+	}
+}
+
+/* iPhone 3+4 landscape 480 x 320 */
+
+@media (max-width: 480px), (max-device-width: 480px) {
+	header nav ul 
+	{
+		margin-left: 1px;
+		width: 460px;
+	}
+
+	header nav ul li 
+	{
+		display: inline;
+	}
+
+	header nav ul li a 
+	{
+		font-size: 0.8em;
+	}
+
+	#topbar nav ul 
+	{
+		font-size: 0.8em;
+		width: 460px;
+		margin-left: 15px;
+	}
+
+	#top-box, #top-box-login, #top-box-profile, #top-box-register 
+	{
+		display: none;
+	}
+
+	#topbar-wrapper 
+	{
+		width: 460px;
+	}
+
+	.flexslider 
+	{
+		max-width: 460px;
+	}
+
+	.flexslider img 
+	{
+		max-width: 460px;
+	}
+
+	.mural-title
+	{
+		max-width: 460px;
+		height: 35px ! important;
+		font-size: 1.3em;
+		margin-top: 18px ! important;
+		line-height: 35px ! important;
+	}
+
+	.footer-copyright 
+	{
+		font-size: 1em;	
+		height: 80px;
+	}
+
+	.footer-menu 
+	{
+		float: left;
+		margin-left: 35px;
+		margin-right: 15px;	
+	}
+
+	.footer-wrapper 
+	{	
+		width: 460px;
+	}
+
+	.footer-wrapper h4 
+	{
+		font-size: 1em;
+	}
+
+	.footer-wrapper ul 
+	{
+		margin-left: 20px;
+	}
+
+	.logo 
+	{
+		margin-left: 20px;
+		max-width: 460px;
+	}
+
+	.post 
+	{	
+		margin-left: 5px;
+		width: 460px;
+	}
+
+	.post-title a
+	{
+		font-size: 25px;
+	}
+
+	.post-left
+	{
+		max-width: 360px;
+	}
+
+	.post-content 
+	{
+		font-size: 12px;
+		margin-bottom: 20px;
+		max-width: 455px;
+		text-align: justify;
+	}
+
+	.post-content img 
+	{
+		margin-left: 2px;
+		max-width: 150px;
+	}
+
+	.post-left 
+	{
+		font-size: 0.65em;
+	}
+
+	.post-right 
+	{
+		float: left;
+		font-size: 0.65em;
+	}
+
+	.post-title 
+	{
+		font-size: 1.2em;
+		font-weight: bold;
+		line-height: 30px;
+		text-shadow: 2px 2px 2px #CCC;
+	}
+
+	.social 
+	{
+		float: none;
+	}
+}
+
+/* Android (Samsung Galaxy) portrait 380 by 685 (equivalent desktop resolution) */
+@media (max-width: 380px), (max-device-width: 380px) {
+
 	header nav ul 
 	{
 		margin-left: 1px;
@@ -480,14 +1215,16 @@ input:required:valid
 
 	header nav ul li a 
 	{
-		font-size: 0.55em;
+		font-size: 0.8em;
+
 	}
 
 	#topbar nav ul 
 	{
-		font-size: 0.6em;
-		width: 400px;
-		margin-left: 15px;
+		font-size: 0.8em;
+		width: 360px;
+		line-height: 25px;
+		margin-left: 10px;
 	}
 
 	#top-box, #top-box-login, #top-box-profile, #top-box-register 
@@ -497,22 +1234,179 @@ input:required:valid
 
 	#topbar-wrapper 
 	{
-		width: 400px;
+		width: 360px;
 	}
 
 	.flexslider 
 	{
-		max-width: 330px;
+		max-width: 365px;
 	}
 
 	.flexslider img 
 	{
-		max-width: 330px;
+		max-width: 365px;
+	}
+
+	.mural-title
+	{
+		max-width: 365px;
+		height: 30px ! important;
+		font-size: 1em;
+		margin-top: 25px ! important;
+		line-height: 25px ! important;
 	}
 
 	.footer-copyright 
 	{
-		font-size: 0.65em;	
+		font-size: 0.8em;	
+		height: 80px;
+	}
+
+	.footer-menu 
+	{
+		float: left;
+		margin-left: 40px;
+		margin-right: 40px;
+	}
+
+	.footer-wrapper 
+	{	
+		width: 360px;
+	}
+
+	.footer-wrapper h4 
+	{
+		font-size: 1.2em;
+	}
+
+	.footer-wrapper ul 
+	{
+		margin-left: 15px;
+		font-size: 1em;	
+	}
+
+	.logo 
+	{
+		margin-left: 20px;
+		max-width: 340px;
+	}
+
+	.post 
+	{	
+		margin-left: 5px;
+		width: 360px;
+	}
+
+	.post-title a
+	{
+		font-size: 25px;
+		max-width: 360px;
+	}
+
+	.post-left
+	{
+		max-width: 360px;
+	}
+
+	.post-content 
+	{
+		font-size: 12px;
+		margin-bottom: 20px;
+		max-width: 360px;
+		text-align: justify;
+	}
+
+	.post-content img 
+	{
+		margin-left: 2px;
+		max-width: 100px;
+	}
+
+	.post-left 
+	{
+		font-size: 0.65em;
+	}
+
+	.post-right 
+	{
+		float: left;
+		font-size: 0.65em;
+	}
+
+	.post-title 
+	{
+		font-size: 1.2em;
+		font-weight: bold;
+		line-height: 30px;
+		text-shadow: 2px 2px 2px #CCC;
+	}
+
+	.social 
+	{
+		float: none;
+	}
+}
+
+
+/* iPhone 3+4 portrait 320 x 480  and iPhone 5 portrait 320 x 568*/
+@media (max-width: 320px), (max-device-width: 320px) {
+	
+	header nav ul 
+	{
+		margin-left: 1px;
+		width: 310px;
+	}
+
+	header nav ul li 
+	{
+		display: inline;
+	}
+
+	header nav ul li a 
+	{
+		font-size: .8em;
+	}
+
+	#topbar nav ul 
+	{
+		font-size: 0.8em;
+		width: 300px;
+		margin-left: 15px;
+		line-height: 30px;
+	}
+
+	#top-box, #top-box-login, #top-box-profile, #top-box-register 
+	{
+		display: none;
+	}
+
+	#topbar-wrapper 
+	{
+		width: 300px;
+	}
+
+	.flexslider 
+	{
+		max-width: 310px;
+	}
+
+	.flexslider img 
+	{
+		max-width: 310px;
+	}
+
+	.mural-title
+	{
+		max-width: 310px;
+		height: 20px ! important;
+		font-size: 0.8em;
+		margin-top: 33px ! important;
+		line-height: 20px ! important;
+	}
+
+	.footer-copyright 
+	{
+		font-size: 0.8em;	
 		height: 80px;
 	}
 
@@ -525,17 +1419,17 @@ input:required:valid
 
 	.footer-wrapper 
 	{	
-		width: 310px;
+		width: 320px;
 	}
 
 	.footer-wrapper h4 
 	{
-		font-size: 0.75em;
+		font-size: 1em;
 	}
 
 	.footer-wrapper ul 
 	{
-		margin-left: 20px;
+		margin-left: 15px;
 	}
 
 	.logo 
@@ -547,19 +1441,179 @@ input:required:valid
 	.post 
 	{	
 		margin-left: 5px;
-		width: 300px;
+		width: 310px;
+	}
+
+	.post-title a
+	{
+		font-size: 20px;
+		max-width: 300px;
+	}
+
+	.post-left
+	{
+		max-width: 310px;
 	}
 
 	.post-content 
 	{
 		font-size: 12px;
 		margin-bottom: 20px;
+		max-width: 300px;
+		text-align: justify;
 	}
 
 	.post-content img 
 	{
 		margin-left: 2px;
-		max-width: 295px;
+		max-width: 100px;
+	}
+
+	.post-left 
+	{
+		font-size: 0.65em;
+	}
+
+	.post-right 
+	{
+		float: left;
+		font-size: 0.65em;
+	}
+
+	.post-title 
+	{
+		font-size: 1.2em;
+		font-weight: bold;
+		line-height: 30px;
+		text-shadow: 2px 2px 2px #CCC;
+	}
+
+	.social 
+	{
+		float: none;
+	}
+}
+
+/*  Crappy Android portrait 240 x 320 and Crappy Android landscape 240 x 320 */
+@media (max-width: 240px), (max-device-width: 240px) {
+	header nav ul 
+	{
+		margin-left: 1px;
+		width: 225px;
+	}
+
+	header nav ul li 
+	{
+		display: inline;
+	}
+
+	header nav ul li a 
+	{
+		font-size: 0.6em;
+	}
+
+	#topbar nav ul 
+	{
+		font-size: 0.6em;
+		width: 225px;
+		margin-left: 15px;
+		line-height: 20px;
+	}
+
+	#top-box, #top-box-login, #top-box-profile, #top-box-register 
+	{
+		display: none;
+	}
+
+	#topbar-wrapper 
+	{
+		width: 225px;
+	}
+
+	.flexslider 
+	{
+		max-width: 225px;
+	}
+
+	.flexslider img 
+	{
+		max-width: 225px;
+	}
+
+	.mural-title
+	{
+		max-width: 225px;
+		height: 15px ! important;
+		font-size: 0.5em;
+		margin-top: 40px ! important;
+		line-height: 15px ! important;
+	}
+
+	.footer-copyright 
+	{
+		font-size: 0.65em;	
+		height: 75px;
+		line-height: 30px ! important;
+	}
+
+	.footer-menu 
+	{
+		float: left;
+		margin-left: 10px;
+		margin-right: 10px;
+		font-size: 0.8em;	
+	}
+
+	.footer-wrapper 
+	{	
+		width: 225px;
+	}
+
+	.footer-wrapper h4 
+	{
+		font-size: 1em;
+	}
+
+	.footer-wrapper ul 
+	{
+		margin-left: 15px;
+	}
+
+	.logo 
+	{
+		margin-left: 15px;
+		max-width: 225px;
+	}
+
+	.post 
+	{	
+		margin-left: 5px;
+		width: 225px;
+	}
+
+	.post-title a
+	{
+		font-size: 13.5px;
+		max-width: 225px;
+	}
+
+	.post-left
+	{
+		max-width: 225px;
+	}
+
+	.post-content 
+	{
+		font-size: 10px;
+		margin-bottom: 20px;
+		max-width: 220px;
+		text-align: justify;
+	}
+
+	.post-content img 
+	{
+		margin-left: 2px;
+		max-width: 80px;
 	}
 
 	.post-left 
