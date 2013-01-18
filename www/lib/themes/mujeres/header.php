@@ -243,7 +243,7 @@
 			</header>
 
   			<?php 
-  				$this->execute("Blog_Controller", "mural");
+  				#$this->execute("Blog_Controller", "mural");
   			?>
 
   			<div class="ads">
