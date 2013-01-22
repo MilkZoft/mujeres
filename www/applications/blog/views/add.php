@@ -100,27 +100,32 @@
 			));
 
 			echo formCheckbox(array (
-				"name" 	=> "thumbnail", 
-				"value" => "thumbnail",
-				"text" => "Thumbnail"
+				"name" 	   => "thumbnail", 
+				"value"    => "thumbnail",
+				"text" 	   => "Thumbnail",
+				"position" => "right"
 			));
 
 			echo formCheckbox(array (
-				"name" 	=> "small", 
-				"value" => "small",
-				"text" => "Small"
+				"name" 	   => "small", 
+				"value"    => "small",
+				"text"     => "Small",
+				"position" => "right"
 			));
 
 			echo formCheckbox(array (
-				"name" 	=> "medium", 
-				"value" => "medium",
-				"text" => "Medium"
+				"name" 	   => "medium", 
+				"value"    => "medium",
+				"text"     => "Medium",
+				"position" => "right"
+
 			));
 
 			echo formCheckbox(array (
-				"name" 	=> "large", 
-				"value" => "large",
-				"text" => "Large"
+				"name" 	   => "large", 
+				"value"    => "large",
+				"text"     => "Large",
+				"position" => "right"
 			));
 
 			if($action === "edit" and $image != "") { 
