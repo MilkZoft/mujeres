@@ -57,7 +57,6 @@ class Blog_Controller extends ZP_Load {
 
 	public function add() {
 		isConnected();
-
 		if(POST("save")) {
 			$vars["alert"] = $this->Blog_Model->add();
 		} 

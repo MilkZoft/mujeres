@@ -99,6 +99,30 @@
 				"p" 	=> TRUE
 			));
 
+			echo formCheckbox(array (
+				"name" 	=> "thumbnail", 
+				"value" => "thumbnail",
+				"text" => "Thumbnail"
+			));
+
+			echo formCheckbox(array (
+				"name" 	=> "small", 
+				"value" => "small",
+				"text" => "Small"
+			));
+
+			echo formCheckbox(array (
+				"name" 	=> "medium", 
+				"value" => "medium",
+				"text" => "Medium"
+			));
+
+			echo formCheckbox(array (
+				"name" 	=> "large", 
+				"value" => "large",
+				"text" => "Large"
+			));
+
 			if($action === "edit" and $image != "") { 
 				echo p(img(path($image, TRUE)));
 				echo formInput(array(	

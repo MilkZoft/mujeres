@@ -73,13 +73,19 @@ class Blog_Model extends ZP_Load {
 
 		$this->Files = $this->core("Files");
 
-		$this->postImage = $this->Files->uploadImage($dir ."/blog/", "image", "resize", TRUE, TRUE, TRUE, FALSE, TRUE);
+		$thumbnail = POST("thumbnail") ? TRUE : FALSE;
+		$small = POST("small") ? TRUE : FALSE;
+		$medium = POST("medium") ? TRUE : FALSE;
+		$large = POST("large") ? TRUE : FALSE;
+
+		$this->postImage = $this->Files->uploadImage($dir ."/blog/", "image", "resize", $thumbnail, $small, $medium, $large);
 		$this->postMural = $this->Files->uploadImage($dir ."/mural/", "mural", "mural");
 		
 		if($action === "edit") {
 			$this->post = $this->Db->find(POST("ID"), $this->table);
 			$currentMural = $this->post[0]["Image_Mural"];
 			$currentOriginalImg = $this->post[0]["Image_Original"];
+			$currentLargeImg = $this->post[0]["Image_Large"];
 			$currentSmallImg = $this->post[0]["Image_Small"];
 			$currentMediumImg = $this->post[0]["Image_Medium"];
 			$currentThumbnailImg = $this->post[0]["Image_Thumbnail"];
@@ -108,9 +114,10 @@ class Blog_Model extends ZP_Load {
 				$this->postImage["original"] = $currentOriginalImg;
 				$this->postImage["small"] = $currentSmallImg;
 				$this->postImage["medium"] = $currentMediumImg;
+				$this->postImage["large"] = $currentLargeImg;
 				$this->postImage["thumbnail"] = $currentThumbnailImg;
 			} elseif($this->postImage and $action == "edit") {
-				$this->Files->deleteFiles(array($currentOriginalImg, $currentSmallImg, $currentMediumImg, $currentThumbnailImg));
+				$this->Files->deleteFiles(array($currentOriginalImg, $currentSmallImg, $currentMediumImg, $currentLargeImg, $currentThumbnailImg));
 			}
 		}
 
@@ -123,6 +130,7 @@ class Blog_Model extends ZP_Load {
 			"Image_Small"  	  => isset($this->postImage["small"])  ? $this->postImage["small"]  : NULL,
 			"Image_Mural"     => isset($this->postMural) ? $this->postMural : NULL,
 			"Image_Medium"    => isset($this->postImage["medium"]) ? $this->postImage["medium"] : NULL,
+			"Image_Large"	  => isset($this->postImage["large"]) ? $this->postImage["large"] : NULL,
 			"Image_Thumbnail" => isset($this->postImage["thumbnail"]) ? $this->postImage["thumbnail"] : NULL,
 			"Pwd"	          => (POST("pwd")) ? POST("pwd", "encrypt") : NULL,			
 			"Tags"		      => POST("tags"),
@@ -140,7 +148,7 @@ class Blog_Model extends ZP_Load {
 			$data["Modified_Date"] = now(4);
 		}
 
-		$this->Data->ignore(array("delete_image", "delete_mural" , "temp_title", "temp_tags", "temp_content", "editor", "categories", "tags", "mural_exists", "mural", "pwd", "category", "language_category", "application", "mural_exist"));
+		$this->Data->ignore(array("delete_image", "delete_mural" , "temp_title", "temp_tags", "temp_content", "editor", "categories", "tags", "mural_exists", "thumbnail", "small", "large", "medium", "mural", "pwd", "category", "language_category", "application", "mural_exist"));
 
 		$this->data = $this->Data->proccess($data, $validations);
 
@@ -153,7 +161,7 @@ class Blog_Model extends ZP_Load {
 		$data = $this->Db->findBySQL("Code = '". POST("code") ."' AND Situation = 'Draft'", $this->table);
 		
 		$insertID = (!$data) ? $this->Db->insert($this->table, $this->data) : $this->Db->update($this->table, $this->data, $data[0]["ID_Post"]);
-
+		
 		$this->Cache = $this->core("Cache");
 
 		$this->Cache->removeAll("blog");
