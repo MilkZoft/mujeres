@@ -7,4 +7,4 @@ if(!defined("_access")) {
 }
 
 define("_bufferToken", "1/ccdb3b0510bde73400b9dcb2695a2812");
-define("_bufferVia", "vía @codejobs");
+define("_bufferVia", "vía @mujeresen");
